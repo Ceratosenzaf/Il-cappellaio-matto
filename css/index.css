@@ -36,9 +36,13 @@
     font-size: 0.8rem;
 }
 
-.item-list-image{
+.item-list-link{
     width: 30%;
     margin-bottom: 2%;
+}
+
+.item-list-image{
+    width: 100%;
 }
 
 .navbar-brand{
@@ -61,4 +65,8 @@
 .dropdown-menu a:hover {
     background-color: #212529; 
     color: rgb(255,255,255);
+}
+
+#footer-bottom-line{
+    background-color:  rgba(0, 0, 0, 0.2);
 }
