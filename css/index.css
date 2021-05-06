@@ -43,6 +43,13 @@
 
 .item-list-image{
     width: 100%;
+    margin-bottom: 2%;
+}
+
+.item-list-text{
+    color: black;
+    text-transform: uppercase;
+    margin-bottom: 0;
 }
 
 .navbar-brand{
@@ -69,4 +76,8 @@
 
 #footer-bottom-line{
     background-color:  rgba(0, 0, 0, 0.2);
+}
+
+a:link{
+    text-decoration: none;
 }
