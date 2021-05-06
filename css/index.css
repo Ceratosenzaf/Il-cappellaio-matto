@@ -1,9 +1,4 @@
-.navbar{
-    background-color: rgba(206, 209, 214, 0.6);
-}
-
-
-#main-photo{
+#main-photo-img{
     width: 100%;
 }
 
@@ -44,4 +39,26 @@
 .item-list-image{
     width: 30%;
     margin-bottom: 2%;
+}
+
+.navbar-brand{
+    margin-right: 0.5%;
+}
+
+.navbar-logo{
+    height: 30px;
+    padding: 0 0 10% 0;
+}
+
+.dropdown-menu{
+    background-color: #212529; 
+}
+
+.dropdown-menu a {
+    color: rgba(255,255,255,.55);
+}
+
+.dropdown-menu a:hover {
+    background-color: #212529; 
+    color: rgb(255,255,255);
 }
