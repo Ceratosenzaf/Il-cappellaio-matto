@@ -1,0 +1,13 @@
+.show-password{
+    height: 24px;
+    padding-top: 4px;
+}
+
+input{
+    margin-bottom: 3%;
+}
+
+#sign-in-image{
+    width: 100%;
+    border-radius: 50%;
+}
