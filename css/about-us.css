@@ -1,0 +1,16 @@
+.about-us-photo{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.about-us-photo[src*="2"]{
+    border-radius: 0;
+}
+
+.about-us-subtitle{
+    margin-bottom: 0;
+}
+
+.about-us-container{
+    margin: auto 0;
+}
