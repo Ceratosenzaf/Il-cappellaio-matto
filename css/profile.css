@@ -7,11 +7,15 @@
     text-align: right;
 }
 
-.row{
-    margin-bottom: 3%;
-}
-
 .order-div{
     margin-bottom: 5%;
-    border-left: 1px solid gray;
+    border-left: 1px solid rgba(33, 37, 41, .2);
+}
+
+#orders{
+    margin-left: 2%;
+}
+
+#orders a:hover, #orders a:visited{
+    color: #212529;
 }

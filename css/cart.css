@@ -1,0 +1,33 @@
+.order-image{
+    width: 100%;
+}
+
+.order-quantity{
+    margin: auto 0;
+    text-align: right;
+}
+
+#orders a:hover, #orders a:visited{
+    color: #212529;
+}
+
+.order-quantity input{
+    width: 70%;
+    margin-left: auto;
+}
+
+.remove-item{
+    margin-left: 50%;
+}
+
+.remove-item:hover{
+    font-weight: bold;
+}
+
+#order-confirm{
+    text-align: right;
+}
+
+#order-confirm a{
+    width: 14%;
+}

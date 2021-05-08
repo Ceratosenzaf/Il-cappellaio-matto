@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <title>Products</title>
     <link rel="icon" href="/resources/logo.png">
@@ -34,7 +35,7 @@
                 Account
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/pages/profile.html">Your profile</a>
+                <a class="dropdown-item" href="/pages/profile.html">My profile</a>
                 <a class="dropdown-item" href="/pages/sign-in.html">Sign in</a>
                 <a class="dropdown-item" href="/pages/sign-up.html">Sign up</a>
                 <a class="dropdown-item" href="/pages/sign-out.html">Sign out</a>
@@ -124,73 +125,79 @@
                     <br>
                     <div class="row mb-2">
                         <div class="col-12">
-                            <input type="submit" class="form-control">
+                            <input type="submit" class="form-control" value="Update">
                         </div>
                     </div>
                 </form>
-
             </div>
+
             <div class="col-6">
                 <h3 class="text-center">Orders history</h3>
                 <hr><br>
-                <div class="row order-div">
-                    <div class="col-10">
-                        <div class="row">
-                            <div class="col-1 order-quantity">1</div>
-                            <div class="col-3">
-                                <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
+                <div id="orders">
+                    <a href="/pages/your-order.html">
+                        <div class="row order-div">
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-1 order-quantity">1</div>
+                                    <div class="col-3">
+                                        <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
+                                        <p class="mb-0">Size: L</p>
+                                        <p>19 €</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-8">
-                                <h5 class="mb-0">Product name</h5>
-                                <p class="mb-0">Size: L</p>
-                                <p>19 €</p>
+                            <div class="col-2 mt-auto mb-auto">
+                                <h5>19 €</h5>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-2 mt-auto mb-auto">
-                        <h5>19 €</h5>
-                    </div>
-                </div>
+                    </a>
+                    <a href="/pages/your-order.html">
+                        <div class="row order-div">
+                            <div class="col-10">
+                                <div class="row mb-3">
+                                    <div class="col-1 order-quantity">1</div>
+                                    <div class="col-3">
+                                        <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
+                                        <p class="mb-0">Size: L</p>
+                                        <p>19 €</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-1 order-quantity">1</div>
+                                    <div class="col-3">
+                                        <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
+                                        <p class="mb-0">Size: L</p>
+                                        <p>19 €</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 order-quantity">1</div>
+                                    <div class="col-3">
+                                        <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
+                                        <p class="mb-0">Size: L</p>
+                                        <p>19 €</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2 mt-auto mb-auto">
+                                <h5>57 €</h5>
+                            </div>
+                        </div>
+                    </a>
 
-                <div class="row order-div">
-                    <div class="col-10">
-                        <div class="row">
-                            <div class="col-1 order-quantity">1</div>
-                            <div class="col-3">
-                                <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
-                            </div>
-                            <div class="col-8">
-                                <h5 class="mb-0">Product name</h5>
-                                <p class="mb-0">Size: L</p>
-                                <p>19 €</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1 order-quantity">1</div>
-                            <div class="col-3">
-                                <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
-                            </div>
-                            <div class="col-8">
-                                <h5 class="mb-0">Product name</h5>
-                                <p class="mb-0">Size: L</p>
-                                <p>19 €</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1 order-quantity">1</div>
-                            <div class="col-3">
-                                <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
-                            </div>
-                            <div class="col-8">
-                                <h5 class="mb-0">Product name</h5>
-                                <p class="mb-0">Size: L</p>
-                                <p>19 €</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2 mt-auto mb-auto">
-                        <h5>19 €</h5>
-                    </div>
                 </div>
             </div>
         </div>

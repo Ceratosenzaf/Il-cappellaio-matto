@@ -73,7 +73,7 @@ a{
     color: rgba(255,255,255,.55);
 }
 
-.dropdown-menu a:hover {
+.dropdown-menu a:hover, .dropdown-menu a:visited {
     background-color: #212529; 
     color: rgb(255,255,255);
 }
