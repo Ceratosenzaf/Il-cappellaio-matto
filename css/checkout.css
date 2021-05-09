@@ -1,0 +1,48 @@
+.order-image{
+    width: 100%;
+}
+
+.order-quantity{
+    margin: auto 0;
+    text-align: right;
+}
+
+#orders a:hover, #orders a:visited{
+    color: #212529;
+}
+
+#order-total{
+    padding: 0 auto;
+}
+
+#order-total hr{
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#order-total h5, #order-total h6{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#buy-button{
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

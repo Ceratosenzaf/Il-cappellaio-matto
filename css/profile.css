@@ -8,7 +8,9 @@
 }
 
 .order-div{
-    margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-bottom: 3%;
     border-left: 1px solid rgba(33, 37, 41, .2);
 }
 
@@ -18,4 +20,9 @@
 
 #orders a:hover, #orders a:visited{
     color: #212529;
+}
+
+.order-div:hover{
+    background-color: rgba(175, 173, 173, 0.1);
+
 }
