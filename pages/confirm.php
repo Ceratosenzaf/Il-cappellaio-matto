@@ -41,7 +41,7 @@
         // query result
         $row = mysqli_fetch_array($result);
         if(!$row){ // if the query returned an empty array 
-          print("<h5>User not found, <a href='/Il-cappellaio-matto/pages/sign-up.php'>create an account</a></h5>");
+          print("<h5>User not found. You can <a href='/Il-cappellaio-matto/pages/sign-up.php'>create an account</a> or <a href='/Il-cappellaio-matto/pages/sign-in.php'>try again</a></h5>");
           exit();
         } else{
           if($row["password"] != $password) { // if the password was wrong 
@@ -107,6 +107,37 @@
 
         // redirect automatically to home page
         header("Location: /Il-cappellaio-matto/index.php");
+        break;
+
+      case "update-profile":
+        // get data from post and session
+        $name = $_POST["name"];
+        $surname = $_POST["surname"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $address = $_POST["address"];
+        $number = $_POST["number"];
+        $city = $_POST["city"];
+        $postal_code = $_POST["postal-code"];
+        $state = $_POST["state"];
+        $country = $_POST["country"];
+        $card_number = $_POST["card-number"];
+        $card_cvc = $_POST["card-cvc"];
+        $card_owner_name = $_POST["card-owner-name"];
+        $expiry_month = $_POST["expiry-month"];
+        $expiry_year = $_POST["expiry-year"];
+        $account = $_SESSION["account"];
+
+        // query
+        $query = "update account set name = '$name', surname = '$surname', email = '$email', password = '$password', address = '$address', house_number = '$number', city = '$city', postal_code_number = '$postal_code', state = '$state', country = '$country', card_number = '$card_number', card_cvc = '$card_cvc', card_owner_name = '$card_owner_name', card_expiry_month = '$expiry_month', card_expiry_year = '$expiry_year' where account_id = '$account'";
+        $result = mysqli_query($connection, $query);
+        if(!$result) { // if query fails
+          print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/pages/sign-in.php'>try again later</a></h5>");
+          exit();
+        } else{ // if it's all fine
+            // redirect automatically to profile page
+            header("Location: /Il-cappellaio-matto/pages/profile.php");
+        }
         break;
 
       default:

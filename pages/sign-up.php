@@ -36,10 +36,16 @@
               Account
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>
-              <a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>
-              <a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>
-              <a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php?reason=sign-out">Sign out</a>
+              <?php 
+                session_start();
+                if($_SESSION["account"]){
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>');
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php?reason=sign-out">Sign out</a>');
+                } else {
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>');
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>');
+                }
+              ?>
             </div>
           </li>
           <li class="nav-item">

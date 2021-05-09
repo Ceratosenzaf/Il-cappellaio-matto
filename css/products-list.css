@@ -4,8 +4,8 @@
 
 .page-item.active .page-link {
     color: white;
-    background-color: #878787;
-    border-color: #878787;
+    background-color: #212529;
+    border-color: #212529;
 }
 
 .page-link:hover{

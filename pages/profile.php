@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Products</title>
+    <title>My profile</title>
     <link rel="icon" href="/Il-cappellaio-matto/resources/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -59,7 +59,7 @@
     <br><br><br><br>
 
     <div class="container">
-        <h1 class="text-center">Hi, 
+        <h1 class="text-center text-capitalize">Hi, 
             <?php                 
                 // connecting to database
                 $database = "il-cappellaio-matto";
@@ -77,71 +77,101 @@
         <br>
         <div class="row">
             <div class="col-6">
-                <form action="">
+                <form action="/Il-cappellaio-matto/pages/confirm.php?reason=update-profile" method="POST">
                     <h3 class="text-center">Profile details</h3>
                     <hr><br>
                     <div class="row mb-2">
                         <div class="col-6">
-                            <input type="text" class="form-control" name="name" placeholder="Name" required>
+                            <?php 
+                                print('<input type="text" class="form-control" name="name" title="name" placeholder="Name" value="'.$row["name"].'" required>');
+                            ?>
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control" name="surname" placeholder="Surname" required>
+                            <?php 
+                                print('<input type="text" class="form-control" name="surname" title="surname" placeholder="Surname" value="'.$row["surname"].'" required>');
+                            ?>
                         </div>
                     </div>
                     <br>
                     <div class="row mb-2">
                         <div class="col-12">
-                            <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                            <?php
+                                print('<input type="email" class="form-control" name="email" title="email" placeholder="E-mail" value="'.$row["email"].'" required>');
+                            ?>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-12">
-                            <input type="text" class="form-control" name="password" placeholder="Password" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="password" title="password" placeholder="Password" value="'.$row["password"].'" required>');
+                            ?>
                         </div>
                     </div>
                     <br>
                     <div class="row mb-2">
                         <div class="col-10">
-                            <input type="text" class="form-control" name="address" placeholder="Address" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="address" title="address" placeholder="Address" value="'.$row["address"].'">');
+                            ?>
                         </div>
                         <div class="col-2">
-                            <input type="text" class="form-control" name="number" placeholder="No." required>
+                            <?php
+                                print('<input type="text" class="form-control" name="number" title="house number" placeholder="No." value="'.$row["house_number"].'">');
+                            ?>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-9">
-                            <input type="text" class="form-control" name="city" placeholder="City" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="city" title="city" placeholder="City" value="'.$row["city"].'">');
+                            ?>
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" name="postal-code" placeholder="Po code" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="postal-code" title="postal code" placeholder="Po code" value="'.$row["postal_code_number"].'">');
+                            ?>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6">
-                            <input type="text" class="form-control" name="state" placeholder="State" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="state" title="state" placeholder="State" value="'.$row["state"].'">');
+                            ?>
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control" name="country" placeholder="Country" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="country" title="country" placeholder="Country" value="'.$row["country"].'">');
+                            ?>
                         </div>
                     </div>
                     <br>
                     <div class="row mb-2">
                         <div class="col-9">
-                            <input type="text" class="form-control" name="card-number" placeholder="You card number" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="card-number" title="card number" placeholder="You card number" value="'.$row["card_number"].'">');
+                            ?>
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" name="card-cvc" placeholder="CVC" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="card-cvc" title="card CVC" placeholder="CVC" value="'.$row["card_cvc"].'">');
+                            ?>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6">
-                            <input type="text" class="form-control" name="card-owner-name" placeholder="Owner name" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="card-owner-name" title="card owner" placeholder="Owner name" value="'.$row["card_owner_name"].'">');
+                            ?>
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" name="expiry-month" placeholder="Exp. Month" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="expiry-month" title="card expiry month" placeholder="Exp. Month" value="'.$row["card_expiry_month"].'">');
+                            ?>
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" name="expiry-year" placeholder="Exp. Year" required>
+                            <?php
+                                print('<input type="text" class="form-control" name="expiry-year" title="card expiry year" placeholder="Exp. Year" value="'.$row["card_expiry_year"].'">');
+                            ?>
                         </div>
                     </div>
                     <br>
@@ -150,6 +180,7 @@
                             <input type="submit" class="form-control" value="Update">
                         </div>
                     </div>
+
                 </form>
             </div>
 
@@ -250,7 +281,7 @@
             <a class="text-white" href="https://github.com/MrC3drik/Capp-L">Il Cappellaio Matto</a>
         </div>
     </footer>
-    
+
     <?php 
         mysqli_close($connection); 
     ?>

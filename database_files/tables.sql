@@ -20,39 +20,35 @@ create table account(
     surname text,
     email text not null,
     password text,
-    shipping_address int,
-    payment_method int,
-    foreign key (shipping_address) references shipping (shipping_id),
-    foreign key (payment_method) references payment (payment_id)
-); 
-
-create table shipping(
-    shipping_id int auto_increment primary key,
     address text,
     house_number text,
     city text,
     postal_code_number int,
     state text,
-    country text
-);
-
-create table payment(
-    payment_id int auto_increment primary key,
+    country text,
     card_number text,
     card_cvc int,
     card_owner_name text,
     card_expiry_month int,
     card_expiry_year int
-);
+); 
 
 create table orders(
     order_id int auto_increment primary key,
     account_id int not null,
     product_id int not null,
-    shipping_address int not null,
-    payment_method int not null,
+    has_paid boolean,
+    address text,
+    house_number text,
+    city text,
+    postal_code_number int,
+    state text,
+    country text,
+    card_number text,
+    card_cvc int,
+    card_owner_name text,
+    card_expiry_month int,
+    card_expiry_year int,
     foreign key (product_id) references product (product_id),
-    foreign key (account_id) references account (account_id),
-    foreign key (shipping_address) references shipping (shipping_id),
-    foreign key (payment_method) references payment (payment_id)
+    foreign key (account_id) references account (account_id)
 );
