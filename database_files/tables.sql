@@ -14,8 +14,8 @@ create table model(
     image_path text
 );
 
-create table user(
-    user_id int auto_increment primary key,
+create table account(
+    account_id int auto_increment primary key,
     name text not null,
     surname text,
     email text not null,
@@ -31,7 +31,7 @@ create table shipping(
     address text,
     house_number text,
     city text,
-    postal_code number,
+    postal_code_number int,
     state text,
     country text
 );
@@ -47,12 +47,12 @@ create table payment(
 
 create table orders(
     order_id int auto_increment primary key,
-    user_id int not null,
+    account_id int not null,
     product_id int not null,
     shipping_address int not null,
     payment_method int not null,
     foreign key (product_id) references product (product_id),
-    foreign key (user_id) references user (user_id),
+    foreign key (account_id) references account (account_id),
     foreign key (shipping_address) references shipping (shipping_id),
     foreign key (payment_method) references payment (payment_id)
 );

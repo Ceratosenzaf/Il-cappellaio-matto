@@ -11,47 +11,69 @@
     <link rel="stylesheet" href="/Il-cappellaio-matto/css/profile.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
-        <div class="container">
-          <a class="navbar-brand" href="/Capp'L/Il-cappellaio-matto/index.php">
-            <img class="navbar-logo" src="/Il-cappellaio-matto/resources/logo-white.png">
-          </a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav" id="pages">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/Il-cappellaio-matto/index.php">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="products-list.php">Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about-us.php">About us</a>
-              </li>
-            </ul>
-          </div>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Account
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="profile.php">My profile</a>
-                <a class="dropdown-item" href="sign-in.php">Sign in</a>
-                <a class="dropdown-item" href="sign-up.php">Sign up</a>
-                <a class="dropdown-item" href="confirm.php">Sign out</a>
-              </div>
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
+      <div class="container">
+        <a class="navbar-brand" href="/Il-cappellaio-matto/index.php">
+          <img class="navbar-logo" src="/Il-cappellaio-matto/resources/logo-white.png">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" id="pages">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/Il-cappellaio-matto/index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0$</a>
+              <a class="nav-link" href="/Il-cappellaio-matto/pages/products-list.php">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Il-cappellaio-matto/pages/about-us.php">About us</a>
             </li>
           </ul>
         </div>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <?php 
+                session_start();
+                if($_SESSION["account"]){
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>');
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php?reason=sign-out">Sign out</a>');
+                } else {
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>');
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>');
+                }
+              ?>
+            </div>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <br><br><br><br>
 
     <div class="container">
-        <h1 class="text-center">Hi, Davide!</h1>
+        <h1 class="text-center">Hi, 
+            <?php                 
+                // connecting to database
+                $database = "il-cappellaio-matto";
+                $connection = mysqli_connect("localhost","root","", $database);
+
+                $account_id = $_SESSION["account"];
+
+                // query
+                $query = "select * from account where account_id='$account_id'";
+                $result = mysqli_query($connection, $query);
+                $row = mysqli_fetch_array($result);
+                print($row["name"]. "!");
+            ?>
+        </h1>
         <br>
         <div class="row">
             <div class="col-6">
@@ -69,7 +91,7 @@
                     <br>
                     <div class="row mb-2">
                         <div class="col-12">
-                            <input type="text" class="form-control" name="email" placeholder="E-mail" required>
+                            <input type="email" class="form-control" name="email" placeholder="E-mail" required>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -146,12 +168,12 @@
                                     <div class="col-8">
                                         <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
                                         <p class="mb-0">Size: L</p>
-                                        <p>19 $</p>
+                                        <p>19 €</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-2 mt-auto mb-auto">
-                                <h5>19 $</h5>
+                                <h5>19 €</h5>
                             </div>
                         </div>
                     </a>
@@ -166,7 +188,7 @@
                                     <div class="col-8">
                                         <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
                                         <p class="mb-0">Size: L</p>
-                                        <p>19 $</p>
+                                        <p>19 €</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -177,7 +199,7 @@
                                     <div class="col-8">
                                         <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
                                         <p class="mb-0">Size: L</p>
-                                        <p>19 $</p>
+                                        <p>19 €</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -188,12 +210,12 @@
                                     <div class="col-8">
                                         <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
                                         <p class="mb-0">Size: L</p>
-                                        <p>19 $</p>
+                                        <p>19 €</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-2 mt-auto mb-auto">
-                                <h5>57 $</h5>
+                                <h5>57 €</h5>
                             </div>
                         </div>
                     </a>
@@ -228,5 +250,9 @@
             <a class="text-white" href="https://github.com/MrC3drik/Capp-L">Il Cappellaio Matto</a>
         </div>
     </footer>
+    
+    <?php 
+        mysqli_close($connection); 
+    ?>
 </body>
 </html>

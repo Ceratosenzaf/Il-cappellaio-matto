@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/Il-cappellaio-matto/css/sign-in.css">
 </head>
 <body>
-  <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
       <div class="container">
         <a class="navbar-brand" href="/Il-cappellaio-matto/index.php">
           <img class="navbar-logo" src="/Il-cappellaio-matto/resources/logo-white.png">
@@ -31,22 +31,30 @@
         </div>
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
               Account
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>
-              <a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>
-              <a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>
-              <a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php">Sign out</a>
+              <?php 
+                session_start();
+                if($_SESSION["account"]){
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>');
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php?reason=sign-out">Sign out</a>');
+                } else {
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>');
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>');
+                }
+              ?>
             </div>
+            
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0$</a>
+            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
           </li>
         </ul>
       </div>
-  </nav>
+    </nav>
 
   <br><br><br>
 
@@ -63,8 +71,8 @@
         <h2>Sign in</h2>
         <hr>
         <br>
-        <form action="">
-          <input type="text" class="form-control" name="email" placeholder="E-mail" required>
+        <form action="/Il-cappellaio-matto/pages/confirm.php?reason=sign-in" method="POST">
+          <input type="email" class="form-control" name="email" placeholder="E-mail" required>
           <input type="password" class="form-control" name="password" placeholder="Password" required>
           <input type="submit" class="form-control" value="Sign in">
         </form>

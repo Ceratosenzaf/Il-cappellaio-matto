@@ -39,11 +39,11 @@
               <a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>
               <a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>
               <a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>
-              <a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php">Sign out</a>
+              <a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php?reason=sign-out">Sign out</a>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0$</a>
+            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
           </li>
         </ul>
       </div>
@@ -64,9 +64,9 @@
           <h2>Sign up</h2>
           <hr>
           <br>
-          <form action="" >
+          <form action="/Il-cappellaio-matto/pages/confirm.php?reason=sign-up" method="POST">
             <input type="text" class="form-control" name="name" placeholder="Name" required>
-            <input type="text" class="form-control" name="email" placeholder="E-mail" required>
+            <input type="email" class="form-control" name="email" placeholder="E-mail" required>
             <input type="password" class="form-control" name="password" placeholder="Password" required>
             <input type="password" class="form-control" name="repeat-password" placeholder="Repeat Password" required>
             <input type="submit" class="form-control" value="Sign up">

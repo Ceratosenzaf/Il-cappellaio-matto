@@ -12,41 +12,48 @@
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
-        <div class="container">
-          <a class="navbar-brand" href="/Il-cappellaio-matto/index.php">
-            <img class="navbar-logo" src="/Il-cappellaio-matto/resources/logo-white.png">
-          </a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav" id="pages">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/Il-cappellaio-matto/index.php">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/Il-cappellaio-matto/pages/products-list.php">Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/Il-cappellaio-matto/pages/about-us.php">About us</a>
-              </li>
-            </ul>
-          </div>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Account
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>
-                <a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>
-                <a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>
-                <a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php">Sign out</a>
-              </div>
+      <div class="container">
+        <a class="navbar-brand" href="/Il-cappellaio-matto/index.php">
+          <img class="navbar-logo" src="/Il-cappellaio-matto/resources/logo-white.png">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" id="pages">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/Il-cappellaio-matto/index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0$</a>
+              <a class="nav-link" href="/Il-cappellaio-matto/pages/products-list.php">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Il-cappellaio-matto/pages/about-us.php">About us</a>
             </li>
           </ul>
         </div>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <?php 
+                session_start();
+                if($_SESSION["account"]){
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>');
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php?reason=sign-out">Sign out</a>');
+                } else {
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>');
+                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>');
+                }
+              ?>
+            </div>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <br><br><br><br><br>
