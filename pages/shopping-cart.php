@@ -2,30 +2,30 @@
 <html>
 <head>
     <title>About us</title>
-    <link rel="icon" href="/resources/logo.png">
+    <link rel="icon" href="/Il-cappellaio-matto/resources/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/Il-cappellaio-matto/css/index.css">
+    <link rel="stylesheet" href="/Il-cappellaio-matto/css/cart.css">
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
         <div class="container">
-          <a class="navbar-brand" href="/index.html">
-            <img class="navbar-logo" src="/resources/logo-white.png">
+          <a class="navbar-brand" href="/Il-cappellaio-matto/index.php">
+            <img class="navbar-logo" src="/Il-cappellaio-matto/resources/logo-white.png">
           </a>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav" id="pages">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                <a class="nav-link active" aria-current="page" href="/Il-cappellaio-matto/index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/pages/products-list.html">Products</a>
+                <a class="nav-link" href="/Il-cappellaio-matto/pages/products-list.php">Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/pages/about-us.html">About us</a>
+                <a class="nav-link" href="/Il-cappellaio-matto/pages/about-us.php">About us</a>
               </li>
             </ul>
           </div>
@@ -36,14 +36,14 @@
                 Account
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/pages/profile.html">My profile</a>
-                <a class="dropdown-item" href="/pages/sign-in.html">Sign in</a>
-                <a class="dropdown-item" href="/pages/sign-up.html">Sign up</a>
-                <a class="dropdown-item" href="/pages/sign-out.html">Sign out</a>
+                <a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>
+                <a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>
+                <a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>
+                <a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php">Sign out</a>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/pages/shopping-cart.html"><i class="fas fa-shopping-cart"></i> / 0€</a>
+              <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0$</a>
             </li>
           </ul>
         </div>
@@ -59,15 +59,15 @@
         <div>
           <div class="row mb-3">
             <div class="col-1 order-quantity">
-              <input type="number" class="form-control" name="product-number-1" value="1" min="1" required>
+              <input type="number" class="form-control" name="product-number-1" value="1" min="1" max="17" required>
             </div>
             <div class="col-2">
-              <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
+              <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
             </div>
             <div class="col-7">
               <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
               <p class="mb-0">Size: L</p>
-              <p class="mb-0">19 €</p>
+              <p class="mb-0">19 $</p>
             </div>
             <div class="col-2 remove-item">
               <button class="btn btn-outline-dark">Remove</button>
@@ -75,15 +75,15 @@
           </div>
           <div class="row mb-3">
             <div class="col-1 order-quantity">
-              <input type="number" class="form-control" name="product-number-2" value="1" min="1" required>
+              <input type="number" class="form-control" name="product-number-2" value="1" min="1" max="17" required>
             </div>
             <div class="col-2">
-              <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
+              <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
             </div>
             <div class="col-7">
               <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
               <p class="mb-0">Size: L</p>
-              <p class="mb-0">19 €</p>
+              <p class="mb-0">19 $</p>
             </div>
             <div class="col-2 remove-item">
               <button class="btn btn-outline-dark">Remove</button>
@@ -91,15 +91,15 @@
           </div>
           <div class="row mb-3">
             <div class="col-1 order-quantity">
-              <input type="number" class="form-control" name="product-number-3" value="1" min="1" required>
+              <input type="number" class="form-control" name="product-number-3" value="1" min="1" max="17" required>
             </div>
             <div class="col-2">
-              <img src="/resources/images/cappelli/cap1.jpg" class="order-image">
+              <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
             </div>
             <div class="col-7">
               <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
               <p class="mb-0">Size: L</p>
-              <p class="mb-0">19 €</p>
+              <p class="mb-0">19 $</p>
             </div>
             <div class="col-2 remove-item">
               <button class="btn btn-outline-dark">Remove</button>
@@ -108,8 +108,8 @@
         </div>
         <hr>
         <div id="order-confirm">
-            <h3>TOTAL: 57 €</h3>
-            <a class="btn btn-outline-dark" href="/pages/checkout.html">Buy now</a>
+            <h3>TOTAL: 57 $</h3>
+            <a class="btn btn-outline-dark" href="/Il-cappellaio-matto/pages/checkout.php">Buy now</a>
         </div>
       </form>
 
