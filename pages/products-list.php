@@ -61,95 +61,155 @@
     <div class="container text-center">
         <h2>All products</h2>
         <br>
-        <div class="row justify-content-center">
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg">
-            <h5 class="item-list-text">polo cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap5.jpg">
-            <h5 class="item-list-text">pink cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap3.jpg">
-            <h5 class="item-list-text">jordan cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-        </div>
-        <div class="row justify-content-center">
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap9.jpg">
-            <h5 class="item-list-text">tommy cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap8.jpg">
-            <h5 class="item-list-text">north face cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap2.jpg">
-            <h5 class="item-list-text">nike cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-        </div>
-        <div class="row justify-content-center">
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap9.jpg">
-            <h5 class="item-list-text">tommy cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap8.jpg">
-            <h5 class="item-list-text">north face cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap2.jpg">
-            <h5 class="item-list-text">nike cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-        </div>
-        <div class="row justify-content-center">
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap9.jpg">
-            <h5 class="item-list-text">tommy cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap8.jpg">
-            <h5 class="item-list-text">north face cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-          <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap2.jpg">
-            <h5 class="item-list-text">nike cap</h5>
-            <h5 class="item-list-text">19 €</h5>
-          </a>
-        </div>
+        <?php 
+          // connecting to database
+          $database = "il-cappellaio-matto";
+          $connection = mysqli_connect("localhost","root","", $database);
+          if(!$connection) {
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+            exit();
+          } 
+
+          // get metatags from site url
+          $url = $_SERVER['REQUEST_URI'];
+          $page = str_replace("page=","",parse_url($url, PHP_URL_QUERY));
+
+          if(!$page){
+            $page = 1;
+            $from = 0;
+            $to = 13;
+          } else{
+            $page = (int)$page;
+            $from = 12 * ($page - 1);
+            $to = (12 * $page) + 1;
+          }
+
+          $_SESSION["page"] = $page;
+
+          //query
+          $query = "select * from model where model_id > '$from' and model_id < '$to'";
+          $result = mysqli_query($connection, $query);
+          if(!$result) {
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+            exit();
+          }
+
+          // query result
+          $row = mysqli_fetch_array($result);
+          if(!$row){ // if the query returned an empty array 
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+            exit();
+          } else{
+            //printing the item i just fetched
+            $id = $row["model_id"];
+            $name = $row["name"];
+            $price = $row["price"];
+            $img = $row["image_path"];
+            print('<div class="row justify-content-center">');
+            print('
+                <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id='.$id.'">
+                  <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/products/'.$img.'">
+                  <h5 class="item-list-text">'.$name.'</h5>
+                  <h5 class="item-list-text">'.$price.' €</h5>
+                </a>
+              ');
+
+            //variable used to count number of items per row
+            $i = 1;
+
+            while($row = mysqli_fetch_array($result)){
+              //variable to print divs
+              $i = $i==3 ? 0 : $i;
+              
+              //setting up variables
+              $id = $row["model_id"];
+              $name = $row["name"];
+              $price = $row["price"];
+              $img = $row["image_path"];
+
+              //print divs every 3 items
+              if($i == 0) print('<div class="row justify-content-center">');
+
+              //image tags
+              print('
+                <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id='.$id.'">
+                  <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/products/'.$img.'">
+                  <h5 class="item-list-text">'.$name.'</h5>
+                  <h5 class="item-list-text">'.$price.' €</h5>
+                </a>
+              ');
+
+              //decrease counter
+              $i++;
+
+              //close divs every 3 items
+              if($i == 3) print('</div>');
+            } 
+            // close div if items are finished
+            if(!$row) print("</div>");
+          }
+
+          // mysqli_close($connection);
+        ?>
     </div>
 
     <br>
 
     <nav id="pagination-ui">
       <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item active"><a class="page-link" href="/Il-cappellaio-matto/pages/products-list.php?page=1">1</a></li>
-        <li class="page-item"><a class="page-link" href="/Il-cappellaio-matto/pages/products-list.php?page=2">2</a></li>
-        <li class="page-item"><a class="page-link" href="/Il-cappellaio-matto/pages/products-list.php?page=3">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
+        <?php 
+          //query
+          $query = "select count(model_id) as item_count from model"; 
+          $result = mysqli_query($connection, $query);
+          if(!$result) {
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+            exit();
+          }
+          //get the pages we need to have
+          $row = mysqli_fetch_assoc($result);
+          $item_count = (int)($row["item_count"]);
+          $necessary_pages = ceil($item_count / 12);
+          $current_page = $_SESSION["page"];
+
+          //left page arrow
+          if($current_page == 1){
+            //disable button if it's the first page
+            print('<li class="page-item disabled">');
+            print( '<a class="page-link" href="/Il-cappellaio-matto/pages/products-list.php?page=1" aria-label="Previous"> ');
+          } else{
+            print('<li class="page-item">');
+            print( '<a class="page-link" href="/Il-cappellaio-matto/pages/products-list.php?page='.($current_page-1).'" aria-label="Previous"> ');
+          } 
+          //close tags of left arrow
+          print( '<span aria-hidden="true">&laquo;</span> ');
+          print( '<span class="sr-only">Previous</span> ');
+          print( '</a> ');
+          print( '</li> ');
+
+          //the page buttons
+          for($i = 1; $i <= $necessary_pages; $i++) {
+            if($current_page == $i){
+              print('<li class="page-item active"><a class="page-link" href="/Il-cappellaio-matto/pages/products-list.php?page='.$i.'">'.$i.'</a></li>');
+            } else {
+              print('<li class="page-item"><a class="page-link" href="/Il-cappellaio-matto/pages/products-list.php?page='.$i.'">'.$i.'</a></li>');
+            }
+          }
+
+          //right page arrow
+          if($current_page == $necessary_pages){
+            //disable button if it's the last page
+            print('<li class="page-item disabled">');
+            print( '<a class="page-link" href="/Il-cappellaio-matto/pages/products-list.php?page='.$necessary_pages.'" aria-label="Next"> ');
+          } else{
+            print('<li class="page-item">');
+            print( '<a class="page-link" href="/Il-cappellaio-matto/pages/products-list.php?page='.($current_page+1).'" aria-label="Next"> ');
+          } 
+          //close tags of right arrow
+          print( '<span aria-hidden="true">&raquo;</span> ');
+          print( '<span class="sr-only">Next</span> ');
+          print( '</a> ');
+          print( '</li> ');
+        ?>
       </ul>
     </nav>
 

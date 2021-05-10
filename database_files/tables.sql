@@ -2,7 +2,6 @@ create table product(
     model_id int not null,
     size char not null, -- S / M / L
     available_items int,
-    price decimal(10,2),
     primary key (model_id, size),
     foreign key (model_id) references model (model_id)
 );
@@ -11,6 +10,7 @@ create table model(
     model_id int auto_increment primary key,
     name text not null,
     brand text,
+    price decimal(10,2),
     image_path text
 );
 
