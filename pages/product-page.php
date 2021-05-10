@@ -57,68 +57,107 @@
     </nav>
 
     <div class="container" id="product-page-main-container">
-        <div class="row">
-            <div class="col-6">
-                <img id="main-product-photo" src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg">
-            </div>
-            <div class="col-6" id="main-product-specs">
-                <h6 id="main-product-categories">
-                    <a class="main-product-category" href="/Il-cappellaio-matto/pages/products-list.php">Home</a>
-                    /
-                    <a class="main-product-category" href="/Il-cappellaio-matto/pages/products-list.php">Polo Ralph Lauren</a>                    
-                </h6>
-                <h1 id="main-product-name">Polo cap</h1>
-                <hr>
-                <h3 id="main-product-price">€ 19</h3> 
-                <form class="form-inline" action="/Il-cappellaio-matto/pages/shopping-cart.php">
-                    <input id="number-of-products" type="number" name="number" value="1" min="1" max="37">
-                    <select id="product-size" name="size">
-                        <option value="S">S</option>
-                        <option value="M" selected>M</option>
-                        <option value="L">L</option>
-                    </select>
-                    <button class="btn btn-dark">Add to cart</button>
-                </form>
-                <div id="main-product-text">
-                    <h5>DETAILS</h5>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-                        repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-                        eum harum corrupti dicta, aliquam sequi voluptate quas.
-                    </p>
-                    <p>
-                        Materials: 100% cotton <br> 
-                        Caution: hand wash and dry clean if possible 
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th scope="col">Sizes</th>
-                              <th scope="col">Metrics</th>
-                              <th scope="col">Inches</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">S</th>
-                              <td>51-54 cm</td>
-                              <td>≃ 21 ″</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">M</th>
-                              <td>55-57 cm</td>
-                              <td>≃ 22 ″</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">L</th>
-                              <td>58-61 cm</td>
-                              <td>≃ 23 ″</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </p>
-                </div>
-            </div>
+      <div class="row">
+      <?php 
+          // connecting to database
+          $database = "il-cappellaio-matto";
+          $connection = mysqli_connect("localhost","root","", $database);
+          if(!$connection) {
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+            exit();
+          } 
+
+          // get metatags from site url
+          $url = $_SERVER['REQUEST_URI'];
+          $id = (int)(str_replace("id=","",parse_url($url, PHP_URL_QUERY)));
+
+          //query
+          $query = "select * from model where model_id = '$id'";
+          $result = mysqli_query($connection, $query);
+          if(!$result) {
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+            exit();
+          }
+
+          // query result
+          $row = mysqli_fetch_array($result);
+          if(!$row){ // if the query returned an empty array 
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+            exit();
+          } else{
+            //saving result for later
+            $_SESSION["product"] = $row;
+          }
+      ?>
+        <div class="col-6">
+        <?php
+          print('<img id="main-product-photo" src="/Il-cappellaio-matto/resources/images/products/'.$_SESSION["product"]["image_path"].'">');
+        ?>
         </div>
+        <div class="col-6" id="main-product-specs">
+          <h6 id="main-product-categories">
+            <a class="main-product-category" href="/Il-cappellaio-matto/pages/products-list.php">Home</a>
+            /
+            <?php
+              print('<a class="main-product-category" href="/Il-cappellaio-matto/pages/products-list.php">'.$_SESSION["product"]["brand"].'</a>');
+            ?>
+          </h6>
+          <?php
+            print('<h1 id="main-product-name">'.$_SESSION["product"]["name"].'</h1>');
+          ?>
+          <hr>
+          <?php
+            print('<h3 id="main-product-price">€ '.$_SESSION["product"]["price"].'</h3> ');
+          ?>
+          <form class="form-inline" action="/Il-cappellaio-matto/pages/shopping-cart.php">
+            <?php
+              print('<input id="number-of-products" type="number" name="number" value="1" min="1" max="37">');
+            
+              print('<select id="product-size" name="size">');
+                  print('<option value="S">S</option>');
+                  print('<option value="M" selected>M</option>');
+                  print('<option value="L">L</option>');
+              print('</select>');
+            ?>
+            <button class="btn btn-dark">Add to cart</button>
+          </form>
+          <div id="main-product-text">
+            <h5>DETAILS</h5>
+            <p>
+            <?php
+              print($_SESSION["product"]["description"]);
+            ?>
+              
+            </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Sizes</th>
+                  <th scope="col">Metrics</th>
+                  <th scope="col">Inches</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">S</th>
+                  <td>51-54 cm</td>
+                  <td>≃ 21 ″</td>
+                </tr>
+                <tr>
+                  <th scope="row">M</th>
+                  <td>55-57 cm</td>
+                  <td>≃ 22 ″</td>
+                </tr>
+                <tr>
+                  <th scope="row">L</th>
+                  <td>58-61 cm</td>
+                  <td>≃ 23 ″</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 
     <br><br>

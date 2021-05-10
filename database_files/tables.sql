@@ -11,7 +11,8 @@ create table model(
     name text not null,
     brand text,
     price decimal(10,2),
-    image_path text
+    image_path text,
+    description text
 );
 
 create table account(

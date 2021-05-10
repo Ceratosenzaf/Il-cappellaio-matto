@@ -59,8 +59,6 @@
     <br><br><br><br>
 
     <div class="container text-center">
-        <h2>All products</h2>
-        <br>
         <?php 
           // connecting to database
           $database = "il-cappellaio-matto";
@@ -100,6 +98,9 @@
             print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
             exit();
           } else{
+            print('<h2>All products</h2>');
+            print('<br>');
+        
             //printing the item i just fetched
             $id = $row["model_id"];
             $name = $row["name"];
@@ -149,7 +150,7 @@
             if(!$row) print("</div>");
           }
 
-          // mysqli_close($connection);
+          mysqli_close($connection);
         ?>
     </div>
 
@@ -158,6 +159,14 @@
     <nav id="pagination-ui">
       <ul class="pagination justify-content-center">
         <?php 
+          // connecting to database
+          $database = "il-cappellaio-matto";
+          $connection = mysqli_connect("localhost","root","", $database);
+          if(!$connection) {
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+            exit();
+          } 
+
           //query
           $query = "select count(model_id) as item_count from model"; 
           $result = mysqli_query($connection, $query);
@@ -209,6 +218,8 @@
           print( '<span class="sr-only">Next</span> ');
           print( '</a> ');
           print( '</li> ');
+          
+          mysqli_close($connection);
         ?>
       </ul>
     </nav>
