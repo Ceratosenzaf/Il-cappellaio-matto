@@ -40,13 +40,19 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <?php 
                 session_start();
-                if($_SESSION["account"]){
-                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>');
-                  print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php?reason=sign-out">Sign out</a>');
-                } else {
+                try{
+                  if($_SESSION["account"]){
+                    print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>');
+                    print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php?reason=sign-out">Sign out</a>');
+                  } else {
+                    print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>');
+                    print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>');
+                  }
+                } catch(Exception $e){
+                  $_SESSION["account"] = "";
                   print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>');
                   print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>');
-                }
+                }                
               ?>
             </div>
             
@@ -74,7 +80,7 @@
       </div>
       <div class="card">
         <div class="card-body text-center">
-          <h5 class="card-title"><i class="fab fa-redhat"></i> MADE IN ITALY</h5>
+          <h5 class="card-title"><i class="fab fa-redhat"></i> 100% COTTON</h5>
           <p class="card-text">TOP QUALITY</p>
         </div>
       </div>
