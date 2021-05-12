@@ -40,7 +40,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <?php 
                 session_start();
-                try{
+                if(isset($_SESSION["account"])){
                   if($_SESSION["account"]){
                     print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/profile.php">My profile</a>');
                     print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/confirm.php?reason=sign-out">Sign out</a>');
@@ -48,7 +48,7 @@
                     print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>');
                     print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>');
                   }
-                } catch(Exception $e){
+                } else{
                   $_SESSION["account"] = "";
                   print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>');
                   print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>');
