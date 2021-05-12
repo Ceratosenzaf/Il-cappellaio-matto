@@ -165,7 +165,6 @@
                 print('</select>');
               }
               mysqli_close($connection);
-
             ?>
             <button class="btn btn-dark">Buy now</button>
           </form>

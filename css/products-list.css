@@ -1,5 +1,5 @@
 .page-link{
-    color: black;
+    color: #212529;
 }
 
 .page-item.active .page-link {
@@ -9,5 +9,5 @@
 }
 
 .page-link:hover{
-    color: black;
+    color: #212529;
 }

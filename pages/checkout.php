@@ -45,6 +45,10 @@
                   print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-in.php">Sign in</a>');
                   print('<a class="dropdown-item" href="/Il-cappellaio-matto/pages/sign-up.php">Sign up</a>');
                 }
+
+                //setting up variables
+                $_SESSION["product"]["number"] = $_POST["number"];
+                $_SESSION["product"]["size"] = $_POST["size"];
               ?>
             </div>
             
@@ -58,43 +62,21 @@
 
     <br><br><br><br>
 
-    <form class="container" action="/Il-cappellaio-matto/pages/your-order.php" method="POST">
+    <form class="container" action="/Il-cappellaio-matto/pages/checkout-operations.php" method="POST">
         <div class="row">
             <div class="col-6">
                 <h3 class="text-center">Orders details</h3>
                 <hr><br>
                 <div class="row order-div">
-                    <div class="row mb-3">
-                        <div class="col-1 order-quantity">1</div>
-                        <div class="col-2">
-                            <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
-                        </div>
-                        <div class="col-9">
-                            <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
-                            <p class="mb-0">Size: L</p>
-                            <p>19 €</p>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-1 order-quantity">1</div>
-                        <div class="col-2">
-                            <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
-                        </div>
-                        <div class="col-9">
-                            <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
-                            <p class="mb-0">Size: L</p>
-                            <p>19 €</p>
-                        </div>
-                    </div>
                     <div class="row">
-                        <div class="col-1 order-quantity">1</div>
+                        <div class="col-1 order-quantity"><?php print($_POST["number"]); ?></div>
                         <div class="col-2">
-                            <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
+                            <?php print('<img src= "/Il-cappellaio-matto/resources/images/products/'. $_SESSION["product"]["image_path"].'" class="order-image">'); ?>
                         </div>
                         <div class="col-9">
-                            <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
-                            <p class="mb-0">Size: L</p>
-                            <p>19 €</p>
+                            <h5 class="mb-0 text-uppercase"><?php print($_SESSION["product"]["name"]); ?></h5>
+                            <p class="mb-0" name="size" value="">Size: <?php print($_POST["size"]); ?></p>
+                            <p><?php print($_SESSION["product"]["price"]); ?> €</p>
                         </div>
                     </div>
                 </div>
@@ -104,16 +86,20 @@
                 <h3 class="text-center">Payment and Shipping details</h3>
                 <hr><br>
                     <?php 
-                        // connecting to database
-                        $database = "il-cappellaio-matto";
-                        $connection = mysqli_connect("localhost","root","", $database);
+                        if(isset($_SESSION["account"])){
+                            // connecting to database
+                            $database = "il-cappellaio-matto";
+                            $connection = mysqli_connect("localhost","root","", $database);
+    
+                            $account_id = $_SESSION["account"];
+    
+                            // query to get profile
+                            $query = "select * from account where account_id='$account_id'";
+                            $result = mysqli_query($connection, $query);
+                            $row = mysqli_fetch_array($result);
 
-                        $account_id = $_SESSION["account"];
-
-                        // query to get profile
-                        $query = "select * from account where account_id='$account_id'";
-                        $result = mysqli_query($connection, $query);
-                        $row = mysqli_fetch_array($result);
+                            mysqli_close($connection);
+                        }
                     ?>             
                 
                 <div class="row mb-2">
@@ -139,36 +125,36 @@
                 <div class="row mb-2">
                     <div class="col-10">
                         <?php
-                            print('<input type="text" class="form-control" name="address" title="address" placeholder="Address" value="'.$row["address"].'">');
+                            print('<input type="text" class="form-control" name="address" title="address" placeholder="Address" value="'.$row["address"].'" required>');
                         ?>
                     </div>
                     <div class="col-2">
                         <?php
-                            print('<input type="text" class="form-control" name="number" title="house number" placeholder="No." value="'.$row["house_number"].'">');
+                            print('<input type="text" class="form-control" name="house-number" title="house number" placeholder="No." value="'.$row["house_number"].'" required>');
                         ?>
                     </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-9">
                         <?php
-                            print('<input type="text" class="form-control" name="city" title="city" placeholder="City" value="'.$row["city"].'">');
+                            print('<input type="text" class="form-control" name="city" title="city" placeholder="City" value="'.$row["city"].'" required>');
                         ?>
                     </div>
                     <div class="col-3">
                         <?php
-                            print('<input type="text" class="form-control" name="postal-code" title="postal code" placeholder="Po code" value="'.$row["postal_code_number"].'">');
+                            print('<input type="text" class="form-control" name="postal-code" title="postal code" placeholder="Po code" value="'.$row["postal_code_number"].'" required>');
                         ?>
                     </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-6">
                         <?php
-                            print('<input type="text" class="form-control" name="state" title="state" placeholder="State" value="'.$row["state"].'">');
+                            print('<input type="text" class="form-control" name="state" title="state" placeholder="State" value="'.$row["state"].'" required>');
                         ?>
                     </div>
                     <div class="col-6">
                         <?php
-                            print('<input type="text" class="form-control" name="country" title="country" placeholder="Country" value="'.$row["country"].'">');
+                            print('<input type="text" class="form-control" name="country" title="country" placeholder="Country" value="'.$row["country"].'" required>');
                         ?>
                     </div>
                 </div>
@@ -176,32 +162,43 @@
                 <div class="row mb-2">
                     <div class="col-9">
                         <?php
-                            print('<input type="text" class="form-control" name="card-number" title="card number" placeholder="You card number" value="'.$row["card_number"].'">');
+                            print('<input type="text" class="form-control" name="card-number" title="card number" placeholder="You card number" value="'.$row["card_number"].'" required>');
                         ?>
                     </div>
                     <div class="col-3">
-                        <?php
-                            print('<input type="text" class="form-control" name="card-cvc" title="card CVC" placeholder="CVC" value="'.$row["card_cvc"].'">');
-                        ?>
+                        <input type="text" class="form-control" name="card-cvc" title="card CVC" placeholder="CVC" min="111" max="999" required>
                     </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-6">
                         <?php
-                            print('<input type="text" class="form-control" name="card-owner-name" title="card owner" placeholder="Owner name" value="'.$row["card_owner_name"].'">');
+                            print('<input type="text" class="form-control" name="card-owner-name" title="card owner" placeholder="Owner name" value="'.$row["card_owner_name"].'" required>');
                         ?>
                     </div>
                     <div class="col-3">
                         <?php
-                            print('<input type="text" class="form-control" name="expiry-month" title="card expiry month" placeholder="Exp. Month" value="'.$row["card_expiry_month"].'">');
+                            print('<input type="text" class="form-control" name="expiry-month" title="card expiry month" placeholder="Exp. Month" value="'.$row["card_expiry_month"].'" required>');
                         ?>
                     </div>
                     <div class="col-3">
                         <?php
-                            print('<input type="text" class="form-control" name="expiry-year" title="card expiry year" placeholder="Exp. Year" value="'.$row["card_expiry_year"].'">');
+                            print('<input type="text" class="form-control" name="expiry-year" title="card expiry year" placeholder="Exp. Year" value="'.$row["card_expiry_year"].'" required>');
                         ?>
                     </div>
                 </div>
+                <br>
+                <?php 
+                    if($_SESSION["account"]) { //only show this ckeckbox if the user is logged in
+                        print('
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="update" checked>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Update data to your profile
+                                </label>
+                            </div>
+                        ');
+                    }
+                ?>
             </div>
 
             <div class="col-6">
@@ -210,7 +207,14 @@
                 <div id="order-total">
                     <h6>
                         <span>Products:</span>
-                        <span>57 €</span>
+                        <span>
+                            <?php
+                                $price = $_SESSION["product"]["price"]; 
+                                $cost = $price * $_POST["number"];
+                                print($cost);
+                            ?> 
+                            €
+                        </span>
                     </h6>
                     <h6>
                         <span>Shipping:</span>
@@ -219,7 +223,12 @@
                     <hr>
                     <h5>
                         <span>Order total:</span>
-                        <span>57 €</span>
+                        <span>
+                            <?php 
+                                print($cost);
+                            ?> 
+                            €
+                        </span>
                     </h5>
                     <br>
                 </div>

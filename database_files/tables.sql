@@ -28,7 +28,6 @@ create table account(
     state text,
     country text,
     card_number text,
-    card_cvc int,
     card_owner_name text,
     card_expiry_month int,
     card_expiry_year int
@@ -38,7 +37,8 @@ create table orders(
     order_id int auto_increment primary key,
     account_id int not null,
     product_id int not null,
-    has_paid boolean,
+    number_of_products int not null,
+    size varchar(2),
     address text,
     house_number text,
     city text,
@@ -46,10 +46,9 @@ create table orders(
     state text,
     country text,
     card_number text,
-    card_cvc int,
     card_owner_name text,
     card_expiry_month int,
     card_expiry_year int,
-    foreign key (product_id) references product (product_id),
+    foreign key (product_id) references product (model_id),
     foreign key (account_id) references account (account_id)
 );

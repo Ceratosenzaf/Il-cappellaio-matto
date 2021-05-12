@@ -72,6 +72,7 @@
                 $result = mysqli_query($connection, $query);
                 $row = mysqli_fetch_array($result);
                 print($row["name"]. "!");
+                mysqli_close($connection);
             ?>
         </h1>
         <br>
@@ -152,9 +153,7 @@
                             ?>
                         </div>
                         <div class="col-3">
-                            <?php
-                                print('<input type="text" class="form-control" name="card-cvc" title="card CVC" placeholder="CVC" value="'.$row["card_cvc"].'">');
-                            ?>
+                            <input type="text" class="form-control" name="card-cvc" title="card CVC" placeholder="CVC">
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -185,72 +184,77 @@
             </div>
 
             <div class="col-6">
-                <h3 class="text-center">Orders history</h3>
+                <h3 class="text-center">Latest orders</h3>
                 <hr><br>
                 <div id="orders">
-                    <a href="your-order.php">
-                        <div class="row order-div">
-                            <div class="col-10">
-                                <div class="row">
-                                    <div class="col-1 order-quantity">1</div>
-                                    <div class="col-3">
-                                        <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
-                                    </div>
-                                    <div class="col-8">
-                                        <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
-                                        <p class="mb-0">Size: L</p>
-                                        <p>19 €</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2 mt-auto mb-auto">
-                                <h5>19 €</h5>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="your-order.php">
-                        <div class="row order-div">
-                            <div class="col-10">
-                                <div class="row mb-3">
-                                    <div class="col-1 order-quantity">1</div>
-                                    <div class="col-3">
-                                        <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
-                                    </div>
-                                    <div class="col-8">
-                                        <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
-                                        <p class="mb-0">Size: L</p>
-                                        <p>19 €</p>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-1 order-quantity">1</div>
-                                    <div class="col-3">
-                                        <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
-                                    </div>
-                                    <div class="col-8">
-                                        <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
-                                        <p class="mb-0">Size: L</p>
-                                        <p>19 €</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1 order-quantity">1</div>
-                                    <div class="col-3">
-                                        <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
-                                    </div>
-                                    <div class="col-8">
-                                        <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
-                                        <p class="mb-0">Size: L</p>
-                                        <p>19 €</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2 mt-auto mb-auto">
-                                <h5>57 €</h5>
-                            </div>
-                        </div>
-                    </a>
+                    <?php 
+                        // connecting to database
+                        $database = "il-cappellaio-matto";
+                        $connection = mysqli_connect("localhost","root","", $database);
 
+                        $account_id = $_SESSION["account"];
+
+                        // query
+                        $query = "select * from orders inner join model on orders.product_id = model.model_id where orders.account_id = '$account_id' limit 5";
+                        $result = mysqli_query($connection, $query);
+                        if(!$result) {
+                           exit();
+                        }
+                        $row = mysqli_fetch_array($result);
+                        if(!$row){ // if the query returned an empty array 
+                            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home pagge</a></h5>");
+                            exit();
+                        } else{
+                            print('
+                                <a href="your-order.php">
+                                    <div class="row order-div">
+                                        <div class="col-10">
+                                            <div class="row">
+                                                <div class="col-1 order-quantity">'.$row["number_of_products"].'</div>
+                                                <div class="col-3">
+                                                    <img src="/Il-cappellaio-matto/resources/images/products/'.$row["image_path"].'" class="order-image">
+                                                </div>
+                                                <div class="col-8">
+                                                    <h5 class="mb-0 text-capitalize">'.$row["name"].'</h5>
+                                                    <p class="mb-0">Size: '.$row["size"].'</p>
+                                                    <p>'.$row["price"].' €</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 mt-auto mb-auto">
+                                            <h5>'.($row["price"] * $row["number_of_products"]).' €</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            ');
+                            while($row = mysqli_fetch_array($result)){
+                                print('
+                                <a href="your-order.php">
+                                    <div class="row order-div">
+                                        <div class="col-10">
+                                            <div class="row">
+                                                <div class="col-1 order-quantity">'.$row["number_of_products"].'</div>
+                                                <div class="col-3">
+                                                    <img src="/Il-cappellaio-matto/resources/images/products/'.$row["image_path"].'" class="order-image">
+                                                </div>
+                                                <div class="col-8">
+                                                    <h5 class="mb-0 text-capitalize">'.$row["name"].'</h5>
+                                                    <p class="mb-0">Size: '.$row["size"].'</p>
+                                                    <p>'.$row["price"].' €</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 mt-auto mb-auto">
+                                            <h5>'.($row["price"] * $row["number_of_products"]).' €</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            ');
+                            }
+                        }
+                        mysqli_close($connection);
+                    ?>
+                    <a href="/Il-cappellaio-matto/pages/orders-history.php" class="form-control text-center">View all</a>
                 </div>
             </div>
         </div>
@@ -281,9 +285,5 @@
             <a class="text-white" href="https://github.com/MrC3drik/Capp-L">Il Cappellaio Matto</a>
         </div>
     </footer>
-
-    <?php 
-        mysqli_close($connection); 
-    ?>
 </body>
 </html>
