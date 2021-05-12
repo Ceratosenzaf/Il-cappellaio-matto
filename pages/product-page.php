@@ -88,6 +88,7 @@
             //saving result for later
             $_SESSION["product"] = $row;
           }
+          mysqli_close($connection);
       ?>
         <div class="col-6">
         <?php
@@ -109,17 +110,64 @@
           <?php
             print('<h3 id="main-product-price">€ '.$_SESSION["product"]["price"].'</h3> ');
           ?>
-          <form class="form-inline" action="/Il-cappellaio-matto/pages/shopping-cart.php">
+          <form class="form-inline" action="/Il-cappellaio-matto/pages/checkout.php" method="POST">
             <?php
-              print('<input id="number-of-products" type="number" name="number" value="1" min="1" max="37">');
-            
-              print('<select id="product-size" name="size">');
-                  print('<option value="S">S</option>');
-                  print('<option value="M" selected>M</option>');
-                  print('<option value="L">L</option>');
-              print('</select>');
+              // connecting to database
+              $database = "il-cappellaio-matto";
+              $connection = mysqli_connect("localhost","root","", $database);
+              if(!$connection) {
+                print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+                exit();
+              } 
+
+              //query
+              $query_s = "select available_items from product where size = 's' and model_id = ".$_SESSION["product"]["model_id"];
+              $query_m = "select available_items from product where size = 'm' and model_id = ".$_SESSION["product"]["model_id"];
+              $query_l = "select available_items from product where size = 'l' and model_id = ".$_SESSION["product"]["model_id"];
+              $result_s = mysqli_query($connection, $query_s);
+              $result_m = mysqli_query($connection, $query_m);
+              $result_l = mysqli_query($connection, $query_l);
+              if(!$result_s || !$result_m || !$result_l) {
+                print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+                exit();
+              }
+
+              // query result
+              $size_s = mysqli_fetch_array($result_s);
+              $size_m = mysqli_fetch_array($result_m);
+              $size_l = mysqli_fetch_array($result_l);
+
+              if(!$size_s || !$size_m || !$size_l){ // if the query returned an empty array 
+                print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+                exit();
+              } else{
+                print('<input type="text" name="product_id" value="'.$_SESSION["product"]["model_id"].'" hidden>'); //used to pass the product id through the form 
+                print('<a name="available_sizes" hidden>'.$size_s["available_items"].'"</a>'); //used to pass the size s to the form 
+                print('<a name="available_sizes" hidden>'.$size_m["available_items"].'"</a>'); //used to pass the size m to the form 
+                print('<a name="available_sizes" hidden>'.$size_l["available_items"].'"</a>'); //used to pass the size l to the form 
+                print('<input id="number-of-products" type="number" name="number" value="1" min="1" max="'.$size_m["available_items"].'">');
+                print('<select id="product-size" name="size">');
+                    if($size_s["available_items"] < 1 || !$size_s["available_items"]) {
+                      print('<option value="S" disabled>S</option>');
+                    } else {
+                      print('<option value="S">S</option>');
+                    }
+                    if($size_m["available_items"] < 1 || !$size_m["available_items"]) {
+                      print('<option value="M" disabled>M</option>');
+                    } else {
+                      print('<option value="M" selected>M</option>');
+                    }
+                    if($size_l["available_items"] < 1 || !$size_l["available_items"]) {
+                      print('<option value="L" disabled>L</option>');
+                    } else {
+                      print('<option value="L">L</option>');
+                    }
+                print('</select>');
+              }
+              mysqli_close($connection);
+
             ?>
-            <button class="btn btn-dark">Add to cart</button>
+            <button class="btn btn-dark">Buy now</button>
           </form>
           <div id="main-product-text">
             <h5>DETAILS</h5>
@@ -227,5 +275,35 @@
             <a class="text-white" href="https://github.com/MrC3drik/Capp-L">Il Cappellaio Matto</a>
         </div>
     </footer>
+
+    
+    <script> 
+      //getting data from page
+      var sizes = document.getElementsByName("available_sizes");
+      var number_input = document.getElementById("number-of-products");
+      var select_size = document.getElementById("product-size");
+
+      //change max on load
+      if(select_size.value == "S"){
+        number_input.max = parseInt(sizes[0].innerHTML);
+      }else if(select_size.value == "M"){
+        number_input.max = parseInt(sizes[1].innerHTML);
+      }else if(select_size.value == "L"){
+        number_input.max = parseInt(sizes[2].innerHTML);
+      }
+      number_input.value = 1;
+
+      //change max every time user updates the selected size
+      select_size.onchange = () => {
+        if(select_size.value == "S"){
+          number_input.max = parseInt(sizes[0].innerHTML);
+        }else if(select_size.value == "M"){
+          number_input.max = parseInt(sizes[1].innerHTML);
+        }else if(select_size.value == "L"){
+          number_input.max = parseInt(sizes[2].innerHTML);
+        }
+        number_input.value = 1;
+      };
+    </script>
 </body>
 </html>
