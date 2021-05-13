@@ -51,10 +51,6 @@
                 $_SESSION["product"]["size"] = $_POST["size"];
               ?>
             </div>
-            
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
           </li>
         </ul>
       </div>

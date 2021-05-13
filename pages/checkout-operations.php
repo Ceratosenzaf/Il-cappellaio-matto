@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>There was a problem</title>
+    <title>Order confirmation</title>
     <link rel="icon" href="/Il-cappellaio-matto/resources/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="/Il-cappellaio-matto/css/index.css">
+    <link rel="stylesheet" href="/Il-cappellaio-matto/css/checkout-operations.css">
 </head>
 <body>
 <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
@@ -46,10 +47,6 @@
                 }
               ?>
             </div>
-            
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
           </li>
         </ul>
       </div>
@@ -59,7 +56,6 @@
   
   <div class="container text-center">
     <?php
-        session_start();
         //connecting to database
         $database = "il-cappellaio-matto";
         $connection = mysqli_connect("localhost","root","", $database);
@@ -138,8 +134,9 @@
         $size = $_SESSION["product"]["size"];
         $number = $_SESSION["product"]["number"];
         $product = $_SESSION["product"]["model_id"];
+        $date = date('y-m-d');
         //query
-        $query = "insert into orders(account_id,product_id,number_of_products,size,address,house_number,city,postal_code_number,state,country,card_number,card_owner_name,card_expiry_month,card_expiry_year) values('$account', '$product', '$number', '$size', '$address', '$house_number', '$city', '$postal_code', '$state', '$country', '$card_number', '$card_owner_name', '$expiry_month', '$expiry_year')";
+        $query = "insert into orders(account_id,product_id,number_of_products,size,date,address,house_number,city,postal_code_number,state,country,card_number,card_owner_name,card_expiry_month,card_expiry_year) values('$account', '$product', '$number', '$size', '$date', '$address', '$house_number', '$city', '$postal_code', '$state', '$country', '$card_number', '$card_owner_name', '$expiry_month', '$expiry_year')";
         $result = mysqli_query($connection, $query);
         if(!$result) { // if query fails
             print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
@@ -168,15 +165,20 @@
         //5. empty current item stored in session
         $_SESSION["product"] = null;
 
-        //6. redirect to order recup page
-        header("Location: /Il-cappellaio-matto/pages/your-order.php");
+        //6. print a success template if everything went right
+        print('
+          <img src="/Il-cappellaio-matto/resources/images/order-confirm.png" id="confirm"> <br><br>
+          <a href="/Il-cappellaio-matto/pages/products-list.php" class="btn btn-primary btn-lg">Search other items</a>
+        
+        ');
 
         mysqli_close($connection);
     ?>
  </div>
+ 
 
   
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br>
 
     <footer class="bg-dark text-center text-white">
         <div class="container p-4">

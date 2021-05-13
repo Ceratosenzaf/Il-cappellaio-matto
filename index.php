@@ -58,7 +58,7 @@
             
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
+            <a class="nav-link" href="/Il-cappellaio-matto/pages/orders-history.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
           </li>
         </ul>
       </div>
@@ -97,40 +97,97 @@
     <div class="container text-center">
       <h2>Most popular</h2>
       <br>
-      <div class="row justify-content-center">
-        <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-          <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg">
-          <h5 class="item-list-text">polo cap</h5>
-          <h5 class="item-list-text">19 €</h5>
-        </a>
-        <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-          <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap5.jpg">
-          <h5 class="item-list-text">pink cap</h5>
-          <h5 class="item-list-text">19 €</h5>
-        </a>
-        <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-          <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap3.jpg">
-          <h5 class="item-list-text">jordan cap</h5>
-          <h5 class="item-list-text">19 €</h5>
-        </a>
-      </div>
-      <div class="row justify-content-center">
-        <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-          <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap9.jpg">
-          <h5 class="item-list-text">tommy cap</h5>
-          <h5 class="item-list-text">19 €</h5>
-        </a>
-        <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-          <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap8.jpg">
-          <h5 class="item-list-text">north face cap</h5>
-          <h5 class="item-list-text">19 €</h5>
-        </a>
-        <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-          <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap2.jpg">
-          <h5 class="item-list-text">nike cap</h5>
-          <h5 class="item-list-text">19 €</h5>
-        </a>
-      </div>
+      <?php 
+        // connecting to database
+        $database = "il-cappellaio-matto";
+        $connection = mysqli_connect("localhost","root","", $database);
+        if(!$connection) {
+          print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+          exit();
+        }
+        $query = "SELECT f.product_id, s.TotalQuantity FROM orders AS f JOIN (SELECT product_id, SUM(number_of_products) AS TotalQuantity FROM orders GROUP BY product_id ) AS s ON f.product_id = s.product_id group by f.product_id order by f.number_of_products DESC limit 6";
+        $result = mysqli_query($connection, $query);
+          if(!$result) {
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+            exit();
+          }
+
+          // query result
+          $row = mysqli_fetch_array($result);
+          if(!$row){ // if the query returned an empty array 
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+            exit();
+          } else{
+            //printing the item i just fetched
+            $id = $row["product_id"];
+            $query_product = "select * from model where model_id = '$id'";
+            $result_product = mysqli_query($connection, $query_product);
+            if(!$result) {
+              print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+              exit();
+            }
+
+            // query result
+            $row_product = mysqli_fetch_array($result_product);
+            $name = $row_product["name"];
+            $price = $row_product["price"];
+            $img = $row_product["image_path"];
+        
+            print('<div class="row justify-content-center">');
+            print('
+                <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id='.$id.'">
+                  <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/products/'.$img.'">
+                  <h5 class="item-list-text">'.$name.'</h5>
+                  <h5 class="item-list-text">'.$price.' €</h5>
+                </a>
+              ');
+
+            //variable used to count number of items per row
+            $i = 1;
+
+            while($row = mysqli_fetch_array($result)){
+              //variable to print divs
+              $i = $i==3 ? 0 : $i;
+              
+              //setting up variables
+              $id = $row["product_id"];
+
+              //print divs every 3 items
+              if($i == 0) print('<div class="row justify-content-center">');
+
+              $query_product = "select * from model where model_id = '$id'";
+              $result_product = mysqli_query($connection, $query_product);
+              if(!$result) {
+                print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+                exit();
+              }
+
+              // query result
+              $row_product = mysqli_fetch_array($result_product);
+              $name = $row_product["name"];
+              $price = $row_product["price"];
+              $img = $row_product["image_path"];
+          
+              print('
+                  <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id='.$id.'">
+                    <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/products/'.$img.'">
+                    <h5 class="item-list-text">'.$name.'</h5>
+                    <h5 class="item-list-text">'.$price.' €</h5>
+                  </a>
+              ');
+
+              //decrease counter
+              $i++;
+
+              //close divs every 3 items
+              if($i == 3) print('</div>');
+            } 
+            // close div if items are finished
+            if(!$row) print("</div>");
+          }
+          
+          mysqli_close($connection);
+      ?>
     </div>
 
     <br><br><br>

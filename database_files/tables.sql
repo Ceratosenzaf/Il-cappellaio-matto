@@ -39,6 +39,7 @@ create table orders(
     product_id int not null,
     number_of_products int not null,
     size varchar(2),
+    date date,
     address text,
     house_number text,
     city text,

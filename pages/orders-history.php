@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My cart</title>
+    <title>Orders history</title>
     <link rel="icon" href="/Il-cappellaio-matto/resources/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="/Il-cappellaio-matto/css/index.css">
-    <link rel="stylesheet" href="/Il-cappellaio-matto/css/cart.css">
+    <link rel="stylesheet" href="/Il-cappellaio-matto/css/order-history.css">
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
@@ -47,10 +47,6 @@
                 }
               ?>
             </div>
-            
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
           </li>
         </ul>
       </div>
@@ -59,67 +55,81 @@
     <br><br><br><br>
     
     <div class="container">
-      <h1 class="text-center">My order</h1>
-      <hr>
+      <br>
+      <h1 class="text-center">Past Orders</h1>
       <br><br>
-      <form action="">
-        <div>
-          <div class="row mb-3">
-            <div class="col-1 order-quantity">
-              <input type="number" class="form-control" name="product-number-1" value="1" min="1" max="17" required>
-            </div>
-            <div class="col-2">
-              <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
-            </div>
-            <div class="col-7">
-              <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
-              <p class="mb-0">Size: L</p>
-              <p class="mb-0">19 €</p>
-            </div>
-            <div class="col-2 remove-item">
-              <button class="btn btn-outline-dark">Remove</button>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-1 order-quantity">
-              <input type="number" class="form-control" name="product-number-2" value="1" min="1" max="17" required>
-            </div>
-            <div class="col-2">
-              <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
-            </div>
-            <div class="col-7">
-              <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
-              <p class="mb-0">Size: L</p>
-              <p class="mb-0">19 €</p>
-            </div>
-            <div class="col-2 remove-item">
-              <button class="btn btn-outline-dark">Remove</button>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-1 order-quantity">
-              <input type="number" class="form-control" name="product-number-3" value="1" min="1" max="17" required>
-            </div>
-            <div class="col-2">
-              <img src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg" class="order-image">
-            </div>
-            <div class="col-7">
-              <h5 class="mb-0">Polo Ralph Loren Green Cap</h5>
-              <p class="mb-0">Size: L</p>
-              <p class="mb-0">19 €</p>
-            </div>
-            <div class="col-2 remove-item">
-              <button class="btn btn-outline-dark">Remove</button>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div id="order-confirm">
-            <h3>TOTAL: 57 €</h3>
-            <a class="btn btn-dark" href="/Il-cappellaio-matto/pages/checkout.php">Buy now</a>
-        </div>
-      </form>
+      <hr>
+      <?php 
+        // connecting to database
+        $database = "il-cappellaio-matto";
+        $connection = mysqli_connect("localhost","root","", $database);
 
+        $account_id = $_SESSION["account"];
+
+        // query
+        $query = "select * from orders inner join model on orders.product_id = model.model_id where orders.account_id = '$account_id' order by orders.order_id desc";
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+            exit();
+        }
+        $row = mysqli_fetch_array($result);
+        if(!$row){ // if the query returned an empty array 
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home pagge</a></h5>");
+            exit();
+        } else{
+            print('
+              <div class="row order-div">
+                <div class="col-10">
+                  <div class="row">
+                    <div class="col-1 order-quantity">'.$row["number_of_products"].'</div>
+                    <div class="col-2">
+                        <img src="/Il-cappellaio-matto/resources/images/products/'.$row["image_path"].'" class="order-image">
+                    </div>
+                    <div class="col-8">
+                        <h5 class="mb-0 text-capitalize">'.$row["name"].'</h5>
+                        <p class="mb-0">'.$row["date"].'</p>
+                        <p class="mb-0">Size: '.$row["size"].'</p>
+                        <p class="mb-0">'.$row["price"].' €</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2 mt-auto mb-auto">
+                    <h5>'.($row["price"] * $row["number_of_products"]).' €</h5>
+                </div>
+              </div>
+            ');
+            print('<hr>');
+            while($row = mysqli_fetch_array($result)){
+                print('
+                  <div class="row order-div">
+                    <div class="col-10">
+                      <div class="row">
+                        <div class="col-1 order-quantity">'.$row["number_of_products"].'</div>
+                        <div class="col-2">
+                            <img src="/Il-cappellaio-matto/resources/images/products/'.$row["image_path"].'" class="order-image">
+                        </div>
+                        <div class="col-8">
+                            <h5 class="mb-0 text-capitalize">'.$row["name"].'</h5>
+                            <p class="mb-0">'.$row["date"].'</p>
+                            <p class="mb-0">Size: '.$row["size"].'</p>
+                            <p class="mb-0">'.$row["price"].' €</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-2 mt-auto mb-auto">
+                        <h5>'.($row["price"] * $row["number_of_products"]).' €</h5>
+                    </div>
+                  </div>
+            ');
+            print('<hr>');
+
+            }
+
+        }
+        mysqli_close($connection);
+      
+      
+      ?>
     </div>
 
     <br><br><br><br><br>

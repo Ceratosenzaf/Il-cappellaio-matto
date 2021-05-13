@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign in</title>
+    <title>We got your order</title>
     <link rel="icon" href="/Il-cappellaio-matto/resources/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="/Il-cappellaio-matto/css/index.css">
-    <link rel="stylesheet" href="/Il-cappellaio-matto/css/sign-in.css">
+    <link rel="stylesheet" href="/Il-cappellaio-matto/css/order-history.css">
 </head>
 <body>
-<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
+    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
       <div class="container">
         <a class="navbar-brand" href="/Il-cappellaio-matto/index.php">
           <img class="navbar-logo" src="/Il-cappellaio-matto/resources/logo-white.png">
@@ -52,53 +52,29 @@
       </div>
     </nav>
 
-  <br><br><br>
+    <br><br><br><br>
+    <br><br><br><br><br>
 
-  <div class="row">
-      <div class="col-1"></div>
-
-      <div class="col-6 text-center" id="sign-in-image" >
-        <img src="/Il-cappellaio-matto/resources/images/capstore.jpg" alt="">
-      </div>
-
-      <div class="col-1"></div>
-
-      <div class="col-3 text-center" id="sign-in-form">
-        <h2>Sign in</h2>
-        <hr>
-        <br>
-        <form action="/Il-cappellaio-matto/pages/confirm.php?reason=sign-in" method="POST">
-          <input type="email" class="form-control" name="email" placeholder="E-mail" required>
-          <input type="password" class="form-control" name="password" placeholder="Password" required>
-          <input type="submit" class="form-control" value="Sign in">
-        </form>
-      </div>
-      
-      <div class="col-1"></div>
-  </div>  
-
-  <br><br><br><br><br><br><br><br><br><br>
-
-  <footer class="bg-dark text-center text-white">
-      <div class="container p-4">
-          <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-              repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-              eum harum corrupti dicta, aliquam sequi voluptate quas.
-          </p>
-          <div class="container">
-              <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-facebook-f"></i></a>
-              <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-twitter"></i></a>
-              <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-google"></i></a>
-              <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-instagram"></i></a>
-              <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-linkedin-in"></i></a>
-              <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-github"></i></a>
-          </div>
-      </div>
-      <div id="footer-bottom-line" class="text-center p-3">
-          © 2021 Copyright:
-          <a class="text-white" href="https://github.com/MrC3drik/Capp-L">Il Cappellaio Matto</a>
-      </div>
-  </footer>
+    <footer class="bg-dark text-center text-white">
+        <div class="container p-4">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+                repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+                eum harum corrupti dicta, aliquam sequi voluptate quas.
+            </p>
+            <div class="container">
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-google"></i></a>
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-instagram"></i></a>
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        <div id="footer-bottom-line" class="text-center p-3">
+            © 2021 Copyright:
+            <a class="text-white" href="https://github.com/MrC3drik/Capp-L">Il Cappellaio Matto</a>
+        </div>
+    </footer>
 </body>
 </html>

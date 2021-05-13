@@ -1,0 +1,16 @@
+.order-image{
+    width: 100%;
+}
+
+.order-quantity{
+    margin: auto 0;
+    text-align: right;
+}
+
+.order-div:hover, .order-div div:visited{
+    color: #212529;
+}
+
+.row{
+    padding: 3% 0;
+}

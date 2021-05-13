@@ -47,10 +47,6 @@
                 }
               ?>
             </div>
-            
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Il-cappellaio-matto/pages/shopping-cart.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
           </li>
         </ul>
       </div>
@@ -195,7 +191,7 @@
                         $account_id = $_SESSION["account"];
 
                         // query
-                        $query = "select * from orders inner join model on orders.product_id = model.model_id where orders.account_id = '$account_id' limit 5";
+                        $query = "select * from orders inner join model on orders.product_id = model.model_id where orders.account_id = '$account_id' order by orders.order_id desc limit 5";
                         $result = mysqli_query($connection, $query);
                         if(!$result) {
                            exit();
@@ -206,49 +202,48 @@
                             exit();
                         } else{
                             print('
-                                <a href="your-order.php">
-                                    <div class="row order-div">
-                                        <div class="col-10">
-                                            <div class="row">
-                                                <div class="col-1 order-quantity">'.$row["number_of_products"].'</div>
-                                                <div class="col-3">
-                                                    <img src="/Il-cappellaio-matto/resources/images/products/'.$row["image_path"].'" class="order-image">
-                                                </div>
-                                                <div class="col-8">
-                                                    <h5 class="mb-0 text-capitalize">'.$row["name"].'</h5>
-                                                    <p class="mb-0">Size: '.$row["size"].'</p>
-                                                    <p>'.$row["price"].' €</p>
-                                                </div>
+                                <div class="row order-div">
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="col-1 order-quantity">'.$row["number_of_products"].'</div>
+                                            <div class="col-3">
+                                                <img src="/Il-cappellaio-matto/resources/images/products/'.$row["image_path"].'" class="order-image">
+                                            </div>
+                                            <div class="col-8">
+                                                <h5 class="mb-0 text-capitalize">'.$row["name"].'</h5>
+                                                <p class="mb-0">'.$row["date"].'</p>
+                                                <p class="mb-0">Size: '.$row["size"].'</p>
+                                                <p class="mb-0">'.$row["price"].' €</p>
                                             </div>
                                         </div>
-                                        <div class="col-2 mt-auto mb-auto">
-                                            <h5>'.($row["price"] * $row["number_of_products"]).' €</h5>
-                                        </div>
                                     </div>
-                                </a>
+                                    <div class="col-2 mt-auto mb-auto">
+                                        <h5>'.($row["price"] * $row["number_of_products"]).' €</h5>
+                                    </div>
+                                </div>
                             ');
                             while($row = mysqli_fetch_array($result)){
                                 print('
-                                <a href="your-order.php">
-                                    <div class="row order-div">
-                                        <div class="col-10">
-                                            <div class="row">
-                                                <div class="col-1 order-quantity">'.$row["number_of_products"].'</div>
-                                                <div class="col-3">
-                                                    <img src="/Il-cappellaio-matto/resources/images/products/'.$row["image_path"].'" class="order-image">
-                                                </div>
-                                                <div class="col-8">
-                                                    <h5 class="mb-0 text-capitalize">'.$row["name"].'</h5>
-                                                    <p class="mb-0">Size: '.$row["size"].'</p>
-                                                    <p>'.$row["price"].' €</p>
-                                                </div>
+                                <hr>
+                                <div class="row order-div">
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="col-1 order-quantity">'.$row["number_of_products"].'</div>
+                                            <div class="col-3">
+                                                <img src="/Il-cappellaio-matto/resources/images/products/'.$row["image_path"].'" class="order-image">
+                                            </div>
+                                            <div class="col-8">
+                                                <h5 class="mb-0 text-capitalize">'.$row["name"].'</h5>
+                                                <p class="mb-0">'.$row["date"].'</p>
+                                                <p class="mb-0">Size: '.$row["size"].'</p>
+                                                <p class="mb-0">'.$row["price"].' €</p>
                                             </div>
                                         </div>
-                                        <div class="col-2 mt-auto mb-auto">
-                                            <h5>'.($row["price"] * $row["number_of_products"]).' €</h5>
-                                        </div>
                                     </div>
-                                </a>
+                                    <div class="col-2 mt-auto mb-auto">
+                                        <h5>'.($row["price"] * $row["number_of_products"]).' €</h5>
+                                    </div>
+                                </div>
                             ');
                             }
                         }
