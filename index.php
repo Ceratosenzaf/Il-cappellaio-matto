@@ -55,10 +55,6 @@
                 }                
               ?>
             </div>
-            
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Il-cappellaio-matto/pages/orders-history.php"><i class="fas fa-shopping-cart"></i> / 0€</a>
           </li>
         </ul>
       </div>
