@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2021 at 05:09 PM
+-- Generation Time: May 14, 2021 at 06:35 PM
 -- Server version: 5.7.17
 -- PHP Version: 5.6.30
 
@@ -65,7 +65,8 @@ INSERT INTO `account` (`account_id`, `name`, `surname`, `email`, `password`, `ad
 (12, 'fgtds', 'gdfgfd', 'gdsdf@gdf.g', NULL, 'Ã²ldsjflÃ²k', '36', 'dslÃ²afk', 2345, 'klafj', 'kdks', '4968486', 'dÃ Ã²saflk lsdfk', 11, 2112),
 (13, 'qwer', 'wqer', 'qweroiuypfckxnmx.dsfsdf@sdafds.dsfa', NULL, 'asdfas', '78', 'fsdafas', 35648, 'fadsf', 'fsdfa', '374537878783', 'afsdasf', 42, 4424),
 (14, 'dsg', 'fdg', 'zxcvbnm.dslafj@gmail.com', NULL, 'ldksajfsdoai', '23', 'lsaifjaslk', 2203, 'ksdlfa', 'lksdjale', '3290478234902', 'ksdflajk', 2, 2333),
-(15, 'a', 'a', 'sfkjsd@fas.ds', NULL, 'adks', '32', 'dkflsja', 25223, 'slkafj', 'lkdss', '29852957298', 'jakaf sdkja', 11, 1223);
+(15, 'a', 'a', 'sfkjsd@fas.ds', NULL, 'adks', '32', 'dkflsja', 25223, 'slkafj', 'lkdss', '29852957298', 'jakaf sdkja', 11, 1223),
+(16, 'luis', 'sal', 'luis@sal.it', NULL, 'via lepri', '17', 'capri', 23423, 'Lombardia', 'Italy', '234234234234', 'luis sal', 12, 2225);
 
 -- --------------------------------------------------------
 
@@ -132,6 +133,7 @@ CREATE TABLE `orders` (
   `product_id` int(11) NOT NULL,
   `number_of_products` int(11) NOT NULL,
   `size` varchar(2) NOT NULL,
+  `date` date NOT NULL,
   `address` text,
   `house_number` text,
   `city` text,
@@ -148,20 +150,34 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `account_id`, `product_id`, `number_of_products`, `size`, `address`, `house_number`, `city`, `postal_code_number`, `state`, `country`, `card_number`, `card_owner_name`, `card_expiry_month`, `card_expiry_year`) VALUES
-(1, 1, 2, 1, 'M', 'via willy il coyote', '8g', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
-(2, 1, 2, 1, 'M', 'via willy il coyote', '8g', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
-(3, 1, 2, 1, 'M', 'via willy il coyote', '8g', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
-(4, 1, 3, 1, 'L', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
-(5, 1, 1, 34, 'L', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
-(6, 1, 25, 1, 'L', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
-(7, 8, 1, 1, 'M', 'ajlÃ²dfjlk', '26', 'asfÃ²ldsa', 3243, 'laskdf', 'ljsdf', '329847328947', 'jdksafhsak', 12, 3289),
-(8, 12, 1, 1, 'M', 'Ã²ldsjflÃ²k', '36', 'dslÃ²afk', 2345, 'klafj', 'kdks', '4968486', 'dÃ Ã²saflk lsdfk', 11, 2112),
-(9, 13, 1, 1, 'M', 'asdfas', '78', 'fsdafas', 35648, 'fadsf', 'fsdfa', '374537878783', 'afsdasf', 42, 4424),
-(10, 14, 3, 1, 'M', 'ldksajfsdoai', '23', 'lsaifjaslk', 2203, 'ksdlfa', 'lksdjale', '3290478234902', 'ksdflajk', 2, 2333),
-(11, 15, 17, 1, 'M', 'adks', '32', 'dkflsja', 25223, 'slkafj', 'lkdss', '29852957298', 'jakaf sdkja', 11, 1223),
-(12, 1, 11, 7, 'L', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
-(13, 1, 8, 8, 'M', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022);
+INSERT INTO `orders` (`order_id`, `account_id`, `product_id`, `number_of_products`, `size`, `date`, `address`, `house_number`, `city`, `postal_code_number`, `state`, `country`, `card_number`, `card_owner_name`, `card_expiry_month`, `card_expiry_year`) VALUES
+(1, 1, 2, 1, 'M', '2021-05-01', 'via willy il coyote', '8g', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(2, 1, 2, 1, 'M', '2021-05-02', 'via willy il coyote', '8g', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(3, 1, 2, 1, 'M', '2021-05-03', 'via willy il coyote', '8g', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(4, 1, 3, 1, 'L', '2021-05-04', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(5, 1, 1, 34, 'L', '2021-05-05', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(6, 1, 25, 1, 'L', '2021-05-06', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(7, 8, 1, 1, 'M', '2021-05-07', 'ajlÃ²dfjlk', '26', 'asfÃ²ldsa', 3243, 'laskdf', 'ljsdf', '329847328947', 'jdksafhsak', 12, 3289),
+(8, 12, 1, 1, 'M', '2021-05-08', 'Ã²ldsjflÃ²k', '36', 'dslÃ²afk', 2345, 'klafj', 'kdks', '4968486', 'dÃ Ã²saflk lsdfk', 11, 2112),
+(9, 13, 1, 1, 'M', '2021-05-09', 'asdfas', '78', 'fsdafas', 35648, 'fadsf', 'fsdfa', '374537878783', 'afsdasf', 42, 4424),
+(10, 14, 3, 1, 'M', '2021-05-10', 'ldksajfsdoai', '23', 'lsaifjaslk', 2203, 'ksdlfa', 'lksdjale', '3290478234902', 'ksdflajk', 2, 2333),
+(11, 15, 17, 1, 'M', '2021-05-11', 'adks', '32', 'dkflsja', 25223, 'slkafj', 'lkdss', '29852957298', 'jakaf sdkja', 11, 1223),
+(12, 1, 11, 7, 'L', '2021-05-12', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(13, 1, 8, 8, 'M', '2021-05-12', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(14, 1, 1, 2, 'M', '2021-05-12', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(15, 1, 1, 1, 'M', '2021-05-12', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(16, 1, 3, 1, 'M', '2021-05-12', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(17, 1, 3, 1, 'M', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(18, 1, 3, 1, 'M', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(19, 1, 8, 3, 'L', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(20, 1, 12, 1, 'M', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(21, 1, 7, 1, 'M', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(22, 1, 10, 1, 'M', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(23, 16, 11, 1, 'M', '2021-05-13', 'via lepri', '17', 'capri', 23423, 'Lombardia', 'Italy', '234234234234', 'luis sal', 12, 2225),
+(24, 1, 12, 1, 'M', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(25, 1, 27, 2, 'S', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(26, 1, 11, 2, 'S', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(27, 1, 25, 1, 'L', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022);
 
 -- --------------------------------------------------------
 
@@ -187,13 +203,13 @@ INSERT INTO `product` (`model_id`, `size`, `available_items`) VALUES
 (30, 'M', 12),
 (30, 'L', 7),
 (1, 'S', 27),
-(1, 'M', 22),
+(1, 'M', 19),
 (1, 'L', 0),
 (2, 'S', 12),
 (2, 'M', 12),
 (2, 'L', 7),
 (3, 'S', 9),
-(3, 'M', 7),
+(3, 'M', 4),
 (3, 'L', 6),
 (4, 'S', 15),
 (4, 'M', 17),
@@ -205,22 +221,22 @@ INSERT INTO `product` (`model_id`, `size`, `available_items`) VALUES
 (6, 'M', 4),
 (6, 'L', 5),
 (7, 'S', 15),
-(7, 'M', 16),
+(7, 'M', 15),
 (7, 'L', 17),
 (8, 'S', 19),
 (8, 'M', 9),
-(8, 'L', 23),
+(8, 'L', 20),
 (9, 'S', 5),
 (9, 'M', 9),
 (9, 'L', 7),
 (10, 'S', 12),
-(10, 'M', 11),
+(10, 'M', 10),
 (10, 'L', 6),
-(11, 'S', 9),
-(11, 'M', 6),
+(11, 'S', 7),
+(11, 'M', 5),
 (11, 'L', 2),
 (12, 'S', 22),
-(12, 'M', 24),
+(12, 'M', 22),
 (12, 'L', 19),
 (13, 'S', 25),
 (13, 'M', 27),
@@ -260,11 +276,11 @@ INSERT INTO `product` (`model_id`, `size`, `available_items`) VALUES
 (24, 'L', 4),
 (25, 'S', 0),
 (25, 'M', 0),
-(25, 'L', 1),
+(25, 'L', 0),
 (26, 'S', 2),
 (26, 'M', 7),
 (26, 'L', 4),
-(27, 'S', 3),
+(27, 'S', 1),
 (27, 'M', 7),
 (27, 'L', 5),
 (28, 'S', 1),
@@ -312,7 +328,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `model`
 --
@@ -322,7 +338,7 @@ ALTER TABLE `model`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;COMMIT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

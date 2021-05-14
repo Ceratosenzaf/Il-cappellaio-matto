@@ -56,7 +56,7 @@
     
     <div class="container">
       <br>
-      <h1 class="text-center">Past Orders</h1>
+      <h1 class="text-center">All Orders</h1>
       <br><br>
       <hr>
       <?php 

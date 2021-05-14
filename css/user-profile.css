@@ -17,6 +17,6 @@
     margin-left: 2%;
 }
 
-#orders a:hover, #orders a:visited{
+a:visited, a:hover{
     color: #212529;
 }

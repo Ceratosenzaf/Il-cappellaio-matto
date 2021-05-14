@@ -8,7 +8,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="/Il-cappellaio-matto/css/index.css">
-    <link rel="stylesheet" href="/Il-cappellaio-matto/css/product-page.css">
+    <link rel="stylesheet" href="/Il-cappellaio-matto/css/product_page.css">
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
@@ -210,36 +210,80 @@
     <div class="container" id="related-products">
         <h3>Related products</h3><br>
         <div class="row justify-content-center text-center">
-          <a class="related-item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap1.jpg">
-            <h6 class="item-list-text">polo cap</h6>
-            <h6 class="item-list-text">19 €</h6>
-          </a>
-          <a class="related-item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap5.jpg">
-            <h6 class="item-list-text">pink cap</h6>
-            <h6 class="item-list-text">19 €</h6>
-          </a>
-          <a class="related-item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap3.jpg">
-            <h6 class="item-list-text">jordan cap</h6>
-            <h6 class="item-list-text">19 €</h6>
-          </a>
-          <a class="related-item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap8.jpg">
-            <h6 class="item-list-text">jordan cap</h6>
-            <h6 class="item-list-text">19 €</h6>
-          </a>
-          <a class="related-item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap7.jpg">
-            <h6 class="item-list-text">jordan cap</h6>
-            <h6 class="item-list-text">19 €</h6>
-          </a>
-          <a class="related-item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id=1">
-            <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/cappelli/cap9.jpg">
-            <h6 class="item-list-text">jordan cap</h6>
-            <h6 class="item-list-text">19 €</h6>
-          </a>
+          <?php 
+            // connecting to database
+            $database = "il-cappellaio-matto";
+            $connection = mysqli_connect("localhost","root","", $database);
+            if(!$connection) {
+              print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+              exit();
+            }
+            $query = "SELECT f.product_id, s.TotalQuantity FROM orders AS f JOIN (SELECT product_id, SUM(number_of_products) AS TotalQuantity FROM orders GROUP BY product_id ) AS s ON f.product_id = s.product_id group by f.product_id order by f.number_of_products DESC limit 6";
+            $result = mysqli_query($connection, $query);
+              if(!$result) {
+                print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+                exit();
+              }
+
+              // query result
+              $row = mysqli_fetch_array($result);
+              if(!$row){ // if the query returned an empty array 
+                print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+                exit();
+              } else{
+                //printing the item i just fetched
+                $id = $row["product_id"];
+                $query_product = "select * from model where model_id = '$id'";
+                $result_product = mysqli_query($connection, $query_product);
+                if(!$result) {
+                  print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+                  exit();
+                }
+
+                // query result
+                $row_product = mysqli_fetch_array($result_product);
+                $name = $row_product["name"];
+                $price = $row_product["price"];
+                $img = $row_product["image_path"];
+            
+                print('
+                    <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id='.$id.'">
+                      <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/products/'.$img.'">
+                      <h6 class="item-list-text">'.$name.'</h6>
+                      <h6 class="item-list-text">'.$price.' €</h6>
+                    </a>
+                  ');
+
+                while($row = mysqli_fetch_array($result)){
+                  
+                  //setting up variables
+                  $id = $row["product_id"];
+
+                  $query_product = "select * from model where model_id = '$id'";
+                  $result_product = mysqli_query($connection, $query_product);
+                  if(!$result) {
+                    print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home page</a></h5>");
+                    exit();
+                  }
+
+                  // query result
+                  $row_product = mysqli_fetch_array($result_product);
+                  $name = $row_product["name"];
+                  $price = $row_product["price"];
+                  $img = $row_product["image_path"];
+              
+                  print('
+                      <a class="item-list-link" href="/Il-cappellaio-matto/pages/product-page.php?id='.$id.'">
+                        <img class="item-list-image" src="/Il-cappellaio-matto/resources/images/products/'.$img.'">
+                        <h6 class="item-list-text">'.$name.'</h6>
+                        <h6 class="item-list-text">'.$price.' €</h6>
+                      </a>
+                  ');
+                } 
+              }
+              
+            mysqli_close($connection);
+          ?>
         </div>
     </div>
 
