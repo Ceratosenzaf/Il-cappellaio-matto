@@ -8,7 +8,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="/Il-cappellaio-matto/css/index.css">
-    <link rel="stylesheet" href="/Il-cappellaio-matto/css/user-profile.css">
+    <link rel="stylesheet" href="/Il-cappellaio-matto/css/profile.css">
 </head>
 <body>
 <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between">
@@ -143,13 +143,10 @@
                     </div>
                     <br>
                     <div class="row mb-2">
-                        <div class="col-9">
+                        <div class="col-12">
                             <?php
                                 print('<input type="text" class="form-control" name="card-number" title="card number" placeholder="You card number" value="'.$row["card_number"].'">');
                             ?>
-                        </div>
-                        <div class="col-3">
-                            <input type="text" class="form-control" name="card-cvc" title="card CVC" placeholder="CVC">
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -160,12 +157,12 @@
                         </div>
                         <div class="col-3">
                             <?php
-                                print('<input type="text" class="form-control" name="expiry-month" title="card expiry month" placeholder="Exp. Month" value="'.$row["card_expiry_month"].'">');
+                                print('<input type="number" class="form-control" name="expiry-month" title="card expiry month" placeholder="Exp. Month" value="'.$row["card_expiry_month"].'" min=1 max = 12>');
                             ?>
                         </div>
                         <div class="col-3">
                             <?php
-                                print('<input type="text" class="form-control" name="expiry-year" title="card expiry year" placeholder="Exp. Year" value="'.$row["card_expiry_year"].'">');
+                                print('<input type="number" class="form-control" name="expiry-year" title="card expiry year" placeholder="Exp. Year" value="'.$row["card_expiry_year"].'" min='. date("Y") .'>');
                             ?>
                         </div>
                     </div>

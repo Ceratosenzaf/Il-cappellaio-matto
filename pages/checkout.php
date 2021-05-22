@@ -162,7 +162,7 @@
                         ?>
                     </div>
                     <div class="col-3">
-                        <input type="text" class="form-control" name="card-cvc" title="card CVC" placeholder="CVC" min="111" max="999" required>
+                        <input type="number" class="form-control" name="card-cvc" title="card CVC" placeholder="CVC" min=111 max=999 required>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -173,12 +173,12 @@
                     </div>
                     <div class="col-3">
                         <?php
-                            print('<input type="text" class="form-control" name="expiry-month" title="card expiry month" placeholder="Exp. Month" value="'.$row["card_expiry_month"].'" required>');
+                            print('<input type="number" class="form-control" name="expiry-month" title="card expiry month" placeholder="Exp. Month" value="'.$row["card_expiry_month"].'" max=12 required>');
                         ?>
                     </div>
                     <div class="col-3">
                         <?php
-                            print('<input type="text" class="form-control" name="expiry-year" title="card expiry year" placeholder="Exp. Year" value="'.$row["card_expiry_year"].'" required>');
+                            print('<input type="number" class="form-control" name="expiry-year" title="card expiry year" placeholder="Exp. Year" value="'.$row["card_expiry_year"].'" min='. date("Y") .'required>');
                         ?>
                     </div>
                 </div>
