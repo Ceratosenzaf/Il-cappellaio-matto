@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2021 at 06:35 PM
+-- Generation Time: May 22, 2021 at 04:04 PM
 -- Server version: 5.7.17
 -- PHP Version: 5.6.30
 
@@ -177,7 +177,9 @@ INSERT INTO `orders` (`order_id`, `account_id`, `product_id`, `number_of_product
 (24, 1, 12, 1, 'M', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
 (25, 1, 27, 2, 'S', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
 (26, 1, 11, 2, 'S', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
-(27, 1, 25, 1, 'L', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022);
+(27, 1, 25, 1, 'L', '2021-05-13', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(28, 1, 27, 1, 'M', '2021-05-19', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(29, 1, 8, 1, 'M', '2021-05-19', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022);
 
 -- --------------------------------------------------------
 
@@ -224,7 +226,7 @@ INSERT INTO `product` (`model_id`, `size`, `available_items`) VALUES
 (7, 'M', 15),
 (7, 'L', 17),
 (8, 'S', 19),
-(8, 'M', 9),
+(8, 'M', 8),
 (8, 'L', 20),
 (9, 'S', 5),
 (9, 'M', 9),
@@ -281,7 +283,7 @@ INSERT INTO `product` (`model_id`, `size`, `available_items`) VALUES
 (26, 'M', 7),
 (26, 'L', 4),
 (27, 'S', 1),
-(27, 'M', 7),
+(27, 'M', 6),
 (27, 'L', 5),
 (28, 'S', 1),
 (28, 'M', 2),
@@ -338,7 +340,7 @@ ALTER TABLE `model`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;COMMIT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
