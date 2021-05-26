@@ -108,36 +108,36 @@
                     <div class="row mb-2">
                         <div class="col-10">
                             <?php
-                                print('<input type="text" class="form-control" name="address" title="address" placeholder="Address" value="'.$row["address"].'">');
+                                print('<input type="text" class="form-control" name="address" title="address" placeholder="Address" value="'.$row["address"].'" required>');
                             ?>
                         </div>
                         <div class="col-2">
                             <?php
-                                print('<input type="text" class="form-control" name="number" title="house number" placeholder="No." value="'.$row["house_number"].'">');
+                                print('<input type="text" class="form-control" name="number" title="house number" placeholder="No." value="'.$row["house_number"].'" required>');
                             ?>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-9">
                             <?php
-                                print('<input type="text" class="form-control" name="city" title="city" placeholder="City" value="'.$row["city"].'">');
+                                print('<input type="text" class="form-control" name="city" title="city" placeholder="City" value="'.$row["city"].'" required>');
                             ?>
                         </div>
                         <div class="col-3">
                             <?php
-                                print('<input type="text" class="form-control" name="postal-code" title="postal code" placeholder="Po code" value="'.$row["postal_code_number"].'">');
+                                print('<input type="text" class="form-control" name="postal-code" title="postal code" placeholder="Po code" value="'.$row["postal_code_number"].'" required>');
                             ?>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6">
                             <?php
-                                print('<input type="text" class="form-control" name="state" title="state" placeholder="State" value="'.$row["state"].'">');
+                                print('<input type="text" class="form-control" name="state" title="state" placeholder="State" value="'.$row["state"].'" required>');
                             ?>
                         </div>
                         <div class="col-6">
                             <?php
-                                print('<input type="text" class="form-control" name="country" title="country" placeholder="Country" value="'.$row["country"].'">');
+                                print('<input type="text" class="form-control" name="country" title="country" placeholder="Country" value="'.$row["country"].'" required>');
                             ?>
                         </div>
                     </div>
@@ -145,24 +145,24 @@
                     <div class="row mb-2">
                         <div class="col-12">
                             <?php
-                                print('<input type="text" class="form-control" name="card-number" title="card number" placeholder="You card number" value="'.$row["card_number"].'">');
+                                print('<input type="text" class="form-control" name="card-number" title="card number" placeholder="You card number" value="'.$row["card_number"].'" required>');
                             ?>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6">
                             <?php
-                                print('<input type="text" class="form-control" name="card-owner-name" title="card owner" placeholder="Owner name" value="'.$row["card_owner_name"].'">');
+                                print('<input type="text" class="form-control" name="card-owner-name" title="card owner" placeholder="Owner name" value="'.$row["card_owner_name"].'" required>');
                             ?>
                         </div>
                         <div class="col-3">
                             <?php
-                                print('<input type="number" class="form-control" name="expiry-month" title="card expiry month" placeholder="Exp. Month" value="'.$row["card_expiry_month"].'" min=1 max = 12>');
+                                print('<input type="number" class="form-control" name="expiry-month" title="card expiry month" placeholder="Exp. Month" value="'.$row["card_expiry_month"].'" min=1 max = 12 required>');
                             ?>
                         </div>
                         <div class="col-3">
                             <?php
-                                print('<input type="number" class="form-control" name="expiry-year" title="card expiry year" placeholder="Exp. Year" value="'.$row["card_expiry_year"].'" min='. date("Y") .'>');
+                                print('<input type="number" class="form-control" name="expiry-year" title="card expiry year" placeholder="Exp. Year" value="'.$row["card_expiry_year"].'" min='. date("Y") .' required>');
                             ?>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                         }
                         $row = mysqli_fetch_array($result);
                         if(!$row){ // if the query returned an empty array 
-                            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/index.php'>go back to the home pagge</a></h5>");
+                            print("<h5  class='text-center'>No orders found!</h5>");
                             exit();
                         } else{
                             print('
@@ -274,7 +274,7 @@
         </div>
         <div id="footer-bottom-line" class="text-center p-3">
             © 2021 Copyright:
-            <a class="text-white" href="https://github.com/MrC3drik/Capp-L">Il Cappellaio Matto</a>
+            <a class="text-white" href="https://github.com/MrC3drik/Il-cappellaio-matto">Il Cappellaio Matto</a>
         </div>
     </footer>
 </body>

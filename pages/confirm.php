@@ -54,9 +54,7 @@
   <br><br><br>
   
   <div class="container text-center">
-    <?php
-      session_start();
-      
+    <?php      
       // connecting to database
       $database = "il-cappellaio-matto";
       $connection = mysqli_connect("localhost","root","", $database);
@@ -176,7 +174,7 @@
           $query = "update account set name = '$name', surname = '$surname', email = '$email', password = '$password', address = '$address', house_number = '$number', city = '$city', postal_code_number = '$postal_code', state = '$state', country = '$country', card_number = '$card_number', card_owner_name = '$card_owner_name', card_expiry_month = '$expiry_month', card_expiry_year = '$expiry_year' where account_id = '$account'";
           $result = mysqli_query($connection, $query);
           if(!$result) { // if query fails
-            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/pages/sign-in.php'>try again later</a></h5>");
+            print("<h5>We are experiencing internal errors, <a href='/Il-cappellaio-matto/pages/profile.php'>try again later</a></h5>");
             exit();
           } else{ // if it's all fine
               // redirect automatically to profile page
@@ -213,7 +211,7 @@
       </div>
       <div id="footer-bottom-line" class="text-center p-3">
           © 2021 Copyright:
-          <a class="text-white" href="https://github.com/MrC3drik/Capp-L">Il Cappellaio Matto</a>
+          <a class="text-white" href="https://github.com/MrC3drik/Il-cappellaio-matto">Il Cappellaio Matto</a>
       </div>
   </footer>
 </body>

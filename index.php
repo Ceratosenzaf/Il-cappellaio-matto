@@ -208,7 +208,7 @@
         </div>
         <div id="footer-bottom-line" class="text-center p-3">
           © 2021 Copyright:
-          <a class="text-white" href="https://github.com/MrC3drik/Capp-L">Il Cappellaio Matto</a>
+          <a class="text-white" href="https://github.com/MrC3drik/Il-cappellaio-matto">Il Cappellaio Matto</a>
         </div>
     </footer>
 
