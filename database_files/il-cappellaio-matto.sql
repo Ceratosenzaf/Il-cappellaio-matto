@@ -51,21 +51,10 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `name`, `surname`, `email`, `password`, `address`, `house_number`, `city`, `postal_code_number`, `state`, `country`, `card_number`, `card_owner_name`, `card_expiry_month`, `card_expiry_year`) VALUES
-(1, 'gianni', 'serra', 'gianni@serra.it', 'sogianni', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
+(1, 'gianni', 'lello', 'gianni@lello.it', 'sogianni', 'via willy il coyote', '88', 'cagliari', 35875, 'puglia', 'italia', '5678844521', 'gianni serra', 12, 2022),
 (2, 'lucrezia', NULL, 'lu@cre.zia', 'lulu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 'lillo', 'lolli', 'li@lo.it', NULL, 'via osas', '12', 'chioggia', 33556, 'veneto', 'italy', '2343424242', 'lillo lolli', 12, 1998),
-(4, 'giggi', 'proietti', 'ggiggggi@pro.iet', NULL, 'via fausta', '7', 'roma', 3302, 'lazio', 'italy', '334342423425', 'proiettittitititi giggggi', 11, 2100),
-(5, 'sushi', 'swap', 'jesuischarlie@jadore.dior', NULL, 'vie de la paix', '17', 'egalite', 32892, 'fraternite', 'france', '234234234234', 'pancake swap', 23, 3424),
-(6, 'sushi', 'swap', 'jesuischarlie@jadore.dior', NULL, 'vie de la paix', '17', 'egalite', 32892, 'fraternite', 'france', '234234234234', 'pancake swap', 23, 3424),
-(7, 'sushi', 'swap', 'jesuischarlie@jadore.dior', NULL, 'vie de la paix', '17', 'egalite', 32892, 'fraternite', 'france', '234234234234', 'pancake swap', 23, 3424),
-(8, 'fg', 'sg', 'sfdgsd@gsd.gdf', NULL, 'ajlÃ²dfjlk', '26', 'asfÃ²ldsa', 3243, 'laskdf', 'ljsdf', '329847328947', 'jdksafhsak', 12, 3289),
-(9, 'fg', 'sg', 'sfdgsd@gsd.gdf', NULL, 'ajlÃ²dfjlk', '26', 'asfÃ²ldsa', 3243, 'laskdf', 'ljsdf', '329847328947', 'jdksafhsak', 12, 3289),
-(10, 'fg', 'sg', 'sfdgsd@gsd.gdf', NULL, 'ajlÃ²dfjlk', '26', 'asfÃ²ldsa', 3243, 'laskdf', 'ljsdf', '329847328947', 'jdksafhsak', 12, 3289),
-(11, 'fg', 'sg', 'sfdgsd@gsd.gdf', NULL, 'ajlÃ²dfjlk', '26', 'asfÃ²ldsa', 3243, 'laskdf', 'ljsdf', '329847328947', 'jdksafhsak', 12, 3289),
-(12, 'fgtds', 'gdfgfd', 'gdsdf@gdf.g', NULL, 'Ã²ldsjflÃ²k', '36', 'dslÃ²afk', 2345, 'klafj', 'kdks', '4968486', 'dÃ Ã²saflk lsdfk', 11, 2112),
-(13, 'qwer', 'wqer', 'qweroiuypfckxnmx.dsfsdf@sdafds.dsfa', NULL, 'asdfas', '78', 'fsdafas', 35648, 'fadsf', 'fsdfa', '374537878783', 'afsdasf', 42, 4424),
-(14, 'dsg', 'fdg', 'zxcvbnm.dslafj@gmail.com', NULL, 'ldksajfsdoai', '23', 'lsaifjaslk', 2203, 'ksdlfa', 'lksdjale', '3290478234902', 'ksdflajk', 2, 2333),
-(15, 'a', 'a', 'sfkjsd@fas.ds', NULL, 'adks', '32', 'dkflsja', 25223, 'slkafj', 'lkdss', '29852957298', 'jakaf sdkja', 11, 1223),
+(4, 'giggi', 'proiet', 'ggiggggi@pro.iet', NULL, 'via fausta', '7', 'roma', 3302, 'lazio', 'italy', '334342423425', 'proiettittitititi giggggi', 11, 2100),
 (16, 'luis', 'sal', 'luis@sal.it', NULL, 'via lepri', '17', 'capri', 23423, 'Lombardia', 'Italy', '234234234234', 'luis sal', 12, 2225);
 
 -- --------------------------------------------------------
